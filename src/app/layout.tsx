@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Image from "next/image";
 import Header from "@/components/header/Header";
 import Footer from "@/components/footer/Footer";
 
@@ -19,19 +18,24 @@ export const metadata: Metadata = {
   title: "Rick and Morty",
   description: "Rick and Morty API",
 };
+interface RootLayoutProps {
+  children: React.ReactNode;
+  backgroundImg?: string;
+}
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+  backgroundImg,
+}: Readonly<RootLayoutProps>) {
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} grid grid-rows-[150px_1fr_100px]  antialiased h-full bg-no-repeat  bg-cover bg-center`}
+        className={`${geistSans.variable} ${geistMono.variable} grid grid-rows-[150px_1fr_100px] min-h-screen  antialiased bg-no-repeat  bg-cover bg-center`}
         style={{
-          backgroundImage:
-            "url('/svg/fondo-hiperespacial-3d-efecto-tunel-urdimbre 1.svg')",
+          backgroundImage: backgroundImg
+            ? "url('/svg/home-background.svg')"
+            : "url('/svg/fondo-hiperespacial-3d-efecto-tunel-urdimbre 1.svg')",
+
           backgroundPosition: "center20%",
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",

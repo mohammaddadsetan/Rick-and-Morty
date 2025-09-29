@@ -67,3 +67,20 @@ body {
 .rotate {
   animation: rotate 55s infinite;
 }
+
+@keyframes mainRotate {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+
+  100% {
+    transform: translate(0, 0) rotate(360deg);
+  }
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+}
+
+.mainRotate {
+  animation: mainRotate 300s infinite;
+}

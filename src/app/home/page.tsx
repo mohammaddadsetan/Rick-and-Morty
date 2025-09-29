@@ -20,13 +20,13 @@ export default function page() {
   ];
 
   return (
-    <main className="p-5">
-      <div className="w-full h-full grid grid-cols-5 grid-rows-3 items-center justify-center grid-flow-col gap-1">
+    <main className="w-full h-full p-20">
+      <div className=" w-full h-full  grid grid-cols-5 grid-rows-3 items-center justify-center grid-flow-col gap-5  ">
         {imageUrls.map((img, index) => {
           const justifyClass =
             index % 2 === 0
-              ? "justify-self-center self-center"
-              : "justify-self-start self-start";
+              ? "justify-self-end self-end"
+              : "justify-self-center self-start";
           return (
             <Image
               width={img.size}
@@ -34,7 +34,7 @@ export default function page() {
               alt="planet icon"
               src={img.url}
               key={index}
-              className={`${justifyClass} rotate hover:translate-[-5px] transform duration-100 ease-in`}
+              className={`${justifyClass} rotate hover:translate-[-5px] transform duration-100 ease-in size-[${img.size}] shrink-0`}
             />
           );
         })}
