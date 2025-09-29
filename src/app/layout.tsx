@@ -28,7 +28,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} grid grid-rows-[150px_1fr_100px]  antialiased h-screen  bg-no-repeat  bg-cover bg-center`}
+        className={`${geistSans.variable} ${geistMono.variable} grid grid-rows-[150px_1fr_100px]  antialiased h-full bg-no-repeat  bg-cover bg-center`}
         style={{
           backgroundImage:
             "url('/svg/fondo-hiperespacial-3d-efecto-tunel-urdimbre 1.svg')",
