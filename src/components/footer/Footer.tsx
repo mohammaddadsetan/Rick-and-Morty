@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Footer() {
   return (
@@ -14,9 +15,10 @@ export default function Footer() {
         <div className="w-[1px] bg-neutral-50 h-full"></div>
         <div className="flex items-center justify-between w-full">
           <div className="flex items-center gap-10">
-            <button>Home</button>
-            <button>Favorites</button>
-            <button>Contact</button>
+            <Link href={"/"}>Home</Link>
+            <Link href={"/planets"}>Planets</Link>
+            <Link href={"/"}>Favorites</Link>
+            <Link href={"/"}>Contact</Link>
           </div>
           <div
             className="flex flex-col items-center gap-1
