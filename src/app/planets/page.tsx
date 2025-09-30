@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 
 export default function page() {
@@ -20,8 +21,8 @@ export default function page() {
   ];
 
   return (
-    <main className="w-full h-full p-20">
-      <div className=" w-full h-full  grid grid-cols-5 grid-rows-3 items-center justify-center grid-flow-col gap-5  ">
+    <main className="w-full h-full p-5">
+      <div className=" w-full h-full px-[10%]  grid grid-cols-5 grid-rows-3 items-center justify-center grid-flow-col gap-5  ">
         {imageUrls.map((img, index) => {
           const justifyClass =
             index % 2 === 0
@@ -34,7 +35,11 @@ export default function page() {
               alt="planet icon"
               src={img.url}
               key={index}
-              className={`${justifyClass} rotate hover:translate-[-5px] transform duration-100 ease-in size-[${img.size}] shrink-0`}
+              className={`${justifyClass} animate-zoom-in  hover:translate-[-5px] transform duration-100 ease-in size-[${img.size}] shrink-0`}
+              onAnimationEnd={(e) => {
+                e.currentTarget.classList.remove("animate-zoom-in");
+                e.currentTarget.classList.add("rotate");
+              }}
             />
           );
         })}

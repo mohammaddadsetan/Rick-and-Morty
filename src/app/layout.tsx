@@ -18,23 +18,19 @@ export const metadata: Metadata = {
   title: "Rick and Morty",
   description: "Rick and Morty API",
 };
-interface RootLayoutProps {
-  children: React.ReactNode;
-  backgroundImg?: string;
-}
 
 export default function RootLayout({
   children,
-  backgroundImg,
-}: Readonly<RootLayoutProps>) {
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   return (
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} grid grid-rows-[150px_1fr_100px] min-h-screen  antialiased bg-no-repeat  bg-cover bg-center`}
         style={{
-          backgroundImage: backgroundImg
-            ? "url('/svg/home-background.svg')"
-            : "url('/svg/fondo-hiperespacial-3d-efecto-tunel-urdimbre 1.svg')",
+          backgroundImage:
+            "url('/svg/fondo-hiperespacial-3d-efecto-tunel-urdimbre 1.svg')",
 
           backgroundPosition: "center20%",
           backgroundRepeat: "no-repeat",
