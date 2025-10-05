@@ -35,7 +35,7 @@ export default function page() {
               alt="planet icon"
               src={img.url}
               key={index}
-              className={`${justifyClass} animate-zoom-in  hover:translate-[-5px] transform duration-100 ease-in size-[${img.size}] shrink-0`}
+              className={`${justifyClass} animate-zoom-in   hover:scale-105 hover:drop-shadow-[0px_0px_20px]  hover:drop-shadow-amber-200 transform duration-100  ease-in size-[${img.size}] shrink-0`}
               onAnimationEnd={(e) => {
                 e.currentTarget.classList.remove("animate-zoom-in");
                 e.currentTarget.classList.add("rotate");
