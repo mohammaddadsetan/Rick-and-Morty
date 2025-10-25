@@ -18,7 +18,7 @@ export default function Planets({
 }: PlanetsProps) {
   return (
     <Link
-      href={`planets/${href.split(" ")[0]}`}
+      href={`planets/${href.split(" ")[0]}_${index + 1}`}
       key={index}
       className={`${className}`}>
       <Image
