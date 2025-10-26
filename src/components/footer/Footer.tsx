@@ -15,10 +15,18 @@ export default function Footer() {
         <div className="w-[1px] bg-neutral-50 h-full"></div>
         <div className="flex items-center justify-between w-full">
           <div className="flex items-center gap-10">
-            <Link href={"/"}>Home</Link>
-            <Link href={"/planets"}>Planets</Link>
-            <Link href={"/"}>Favorites</Link>
-            <Link href={"/"}>Contact</Link>
+            <Link className="hover:text-[#87F54E]" href={"/"}>
+              Home
+            </Link>
+            <Link className="hover:text-[#87F54E]" href={"/planets"}>
+              Planets
+            </Link>
+            <Link className="hover:text-[#87F54E]" href={"/"}>
+              Favorites
+            </Link>
+            <Link className="hover:text-[#87F54E]" href={"/"}>
+              Contact
+            </Link>
           </div>
           <div
             className="flex flex-col items-center gap-1
