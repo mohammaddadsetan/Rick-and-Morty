@@ -23,9 +23,11 @@ export default function CharacterSection({ character }: CharacterSectionProps) {
   const sliderRef = useRef<HTMLDivElement>(null);
 
   const handleMouseDown = (e: React.MouseEvent) => {
-    e.preventDefault();
-    setIsDragging(true);
-    setStartX(e.clientX);
+    if (character.length >= 3) {
+      e.preventDefault();
+      setIsDragging(true);
+      setStartX(e.clientX);
+    }
   };
 
   const handleMouseMove = (e: React.MouseEvent) => {
@@ -49,20 +51,22 @@ export default function CharacterSection({ character }: CharacterSectionProps) {
   };
 
   useEffect(() => {
-    const slider = sliderRef.current;
-    if (!slider) return;
+    if (character.length >= 3) {
+      const slider = sliderRef.current;
+      if (!slider) return;
 
-    const handleWheel = (e: WheelEvent) => {
-      e.preventDefault();
-      if (e.deltaY < 0) {
-        setStartIndex((prev) => Math.max(prev - 1, 0));
-      } else if (e.deltaY > 0) {
-        setStartIndex((prev) => Math.min(prev + 1, character.length - 3));
-      }
-    };
+      const handleWheel = (e: WheelEvent) => {
+        e.preventDefault();
+        if (e.deltaY < 0) {
+          setStartIndex((prev) => Math.max(prev - 1, 0));
+        } else if (e.deltaY > 0) {
+          setStartIndex((prev) => Math.min(prev + 1, character.length - 3));
+        }
+      };
 
-    slider.addEventListener("wheel", handleWheel, { passive: false });
-    return () => slider.removeEventListener("wheel", handleWheel);
+      slider.addEventListener("wheel", handleWheel, { passive: false });
+      return () => slider.removeEventListener("wheel", handleWheel);
+    }
   }, [character]);
 
   useEffect(() => {
@@ -74,7 +78,7 @@ export default function CharacterSection({ character }: CharacterSectionProps) {
       <button
         className={`cursor-pointer ${
           startIndex === 0 ? "opacity-50 pointer-events-none" : ""
-        }`}
+        } ${character.length < 3 ? "hidden" : ""}`}
         onClick={() => setStartIndex((prev) => Math.max(prev - 1, 0))}>
         <ChevronLeft size={80} className="text-primary-100" />
       </button>
@@ -105,7 +109,7 @@ export default function CharacterSection({ character }: CharacterSectionProps) {
           startIndex >= character.length - 3
             ? "opacity-50 pointer-events-none"
             : ""
-        }`}
+        } ${character.length < 3 ? "hidden" : ""}`}
         onClick={() =>
           setStartIndex((prev) => Math.min(prev + 1, character.length - 3))
         }>
