@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 
-export default function Home() {
+export default function page() {
   return (
     <div className=" w-full flex justify-center p-2">
       <Image
