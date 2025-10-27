@@ -5,7 +5,7 @@ interface characterCardProps {
   character_img: string;
   character_name: string;
   species: string;
-  status: "Alive" | "Dead" | "Unknown";
+  status: "Alive" | "Dead" | "unknown";
 }
 
 export default function CharacterCard({
@@ -14,18 +14,12 @@ export default function CharacterCard({
   species,
   status = "Alive",
 }: characterCardProps) {
-  const statusColor =
-    status === "Alive"
-      ? "[#87F54E]"
-      : status === "Dead"
-      ? "red-500"
-      : status === "Unknown"
-      ? "amber-300"
-      : "";
+  const color =
+    status === "Alive" ? "#87F54E" : status === "Dead" ? "#fb2c36" : "#ffd230";
   return (
-    <div className="w-full max-w-72 overflow-hidden rounded-3xl ">
+    <div className="w-full min-w-72 overflow-hidden rounded-3xl ">
       <div className="w-full h-72 relative">
-        <div className="bg-neutral-800 rounded-full size-10 flex items-center justify-center absolute top-0 left-0 overflow-hidden m-1 z-10">
+        <div className="bg-neutral-800   rounded-full size-10 flex items-center justify-center absolute top-0 left-0 overflow-hidden m-1 z-10">
           <Image alt="like" src={"/svg/star.svg"} width={27} height={27} />
         </div>
         <Image
@@ -47,9 +41,11 @@ export default function CharacterCard({
           <p>{species}</p>
         </div>
         <div
-          className={`bg-neutral-800 w-full max-w-2/4   text-lg    self-center flex items-center justify-center gap-2  py-2 rounded-t-3xl text-${statusColor} `}>
+          className="w-full max-w-2/4 text-lg self-center flex items-center justify-center gap-2 py-2 rounded-t-3xl bg-neutral-800"
+          style={{ color: color }}>
           <div
-            className={`rounded-full size-2.5 shrink-0 bg-${statusColor}`}></div>
+            className="rounded-full size-2.5 shrink-0"
+            style={{ backgroundColor: color }}></div>
           <span>{status}</span>
         </div>
       </div>

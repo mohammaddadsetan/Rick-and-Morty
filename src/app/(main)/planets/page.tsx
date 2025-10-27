@@ -12,7 +12,6 @@ const res = await GetLocations();
 const locations: Location[] = res.data.results;
 
 export default function Page() {
-  console.log(character);
   return (
     <main className="w-full h-full p-5">
       <div className=" w-full h-full px-[10%]  grid grid-cols-5 grid-rows-3 items-center justify-center grid-flow-col gap-5  ">
