@@ -2,6 +2,8 @@ import Image from "next/image";
 import { character } from "../page";
 import { PlanetsImgData } from "../PlanetsData";
 import { GetLocationsById } from "@/services/contentSercives";
+import CharacterCard from "@/components/layouts/planet/characterSection/CharacterCard";
+import { ChevronRight, ChevronLeft } from "lucide-react";
 interface ParamsProps {
   params: {
     planet: string;
@@ -67,48 +69,28 @@ const page = async ({ params }: ParamsProps) => {
         </ul>
       </div>
 
-      <section>
-        <div>
-          <div className="w-full max-w-72 overflow-hidden rounded-3xl ">
-            <div className="w-full h-72 relative">
-              <div className="bg-neutral-800 rounded-full size-12 flex items-center justify-center absolute top-0 left-0 overflow-hidden m-1 z-10">
-                <Image
-                  alt="like"
-                  src={"/svg/star.svg"}
-                  width={37}
-                  height={37}
-                />
-              </div>
-              <Image
-                alt="character"
-                src={characterImg}
-                width={300}
-                height={400}
-                objectFit="cover"
-              />
-              <div className="bg-neutral-800 drop-shadow-[0px_0px_12px] drop-shadow-[#0000004f] -mb-8 mr-1 rounded-full text-2xl size-22 flex items-center justify-center absolute bottom-0 right-0 border-4 border-[#87F54E]">
-                Go
-              </div>
-            </div>
-            <div className="text-[#4D4D4D] bg-[#87F54E] px-4 py-3 flex flex-col pb-0 gap-3">
-              <div>
-                <p className="text-lg font-bold">Name:</p>
-                <p>Rick</p>
-                <p className="text-lg font-bold">Status:</p>
-                <p>Alive</p>
-              </div>
-              <div className="bg-neutral-800 w-fit  self-center flex items-center justify-center px-8 py-5 rounded-t-3xl">
-                <Image
-                  alt="gun icon"
-                  src={"/svg/gun.svg"}
-                  width={44}
-                  height={27}
-                />
-                <span className="ml-2">Earth (C-137)</span>
-              </div>
-            </div>
-          </div>
+      <section className="flex">
+        <button>
+          <ChevronLeft size={120} className="text-primary-100" />
+        </button>
+        <div className="flex gap-2">
+          {[
+            character.data.results[0],
+            character.data.results[1],
+            character.data.results[2],
+          ].map((char, index) => (
+            <CharacterCard
+              character_img={char.image}
+              species={char.species}
+              character_name={char.name}
+              key={index}
+              status={char.status}
+            />
+          ))}
         </div>
+        <button>
+          <ChevronRight size={120} className="text-primary-100" />
+        </button>
       </section>
     </section>
   );
