@@ -1,5 +1,5 @@
-import { PlanetsImgData } from "./PlanetsData";
-import Planets from "./Planets";
+import { PlanetsImgData } from "../../../components/layouts/planets/PlanetsData";
+import Planets from "../../../components/layouts/planets/Planets";
 import { GetCaracters, GetLocations } from "@/services/contentSercives";
 interface Location {
   id: number;

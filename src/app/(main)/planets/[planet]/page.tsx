@@ -1,4 +1,4 @@
-import { PlanetsImgData } from "../PlanetsData";
+import { PlanetsImgData } from "../../../../components/layouts/planets/PlanetsData";
 import { GetLocationsById } from "@/services/contentSercives";
 import CharacterSection from "@/components/layouts/planet/characterSection/CharacterSection";
 import { character } from "../page";
@@ -32,14 +32,16 @@ const page = async ({ params }: ParamsProps) => {
 
   console.log(planetCharacter);
   return (
-    <section className="text-neutral-50 flex flex-col items-center">
-      <PlanetInfoSection
-        planetData={PlanetData.data}
-        planetImg={planetImg?.url || "/svg/planet1.svg"}
-      />
+    <main>
+      <section className="text-neutral-50 flex flex-col items-center pb-20">
+        <PlanetInfoSection
+          planetData={PlanetData.data}
+          planetImg={planetImg?.url || "/svg/planet1.svg"}
+        />
 
-      <CharacterSection character={planetCharacter} />
-    </section>
+        <CharacterSection character={planetCharacter} />
+      </section>
+    </main>
   );
 };
 export default page;
