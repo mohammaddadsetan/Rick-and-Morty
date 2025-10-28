@@ -1,8 +1,8 @@
 "use client";
 import Image from "next/image";
-import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { HeaderLinks } from "./Data";
+import MultiNavButton from "@/components/ui/MultiNavButton";
 export default function Header() {
   const pathname = usePathname();
   return pathname === "/" ? (
@@ -12,7 +12,7 @@ export default function Header() {
         height={51}
         alt="logo"
         src={"/svg/rick-and-morty-logo.svg"}
-        className="w-full h-full"
+        className="w-full h-full "
       />
     </header>
   ) : (
@@ -25,13 +25,11 @@ export default function Header() {
           height={100}
           className="h-full w-auto"
         />
-        <div className="flex justify-end gap-10 text-lg  text-[#87F54E] w-full">
-          {HeaderLinks.map((link, index) => (
-            <Link key={index} href={link.href}>
-              {link.text}
-            </Link>
-          ))}
-        </div>
+
+        <MultiNavButton
+          data={HeaderLinks}
+          containerClassName="text-primary-100 gap-10 text-lg"
+        />
       </div>
     </header>
   );
