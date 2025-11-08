@@ -7,6 +7,7 @@ interface Character {
   image: string;
   species: string;
   name: string;
+  id: number;
   status: "Alive" | "Dead" | "unknown";
 }
 
@@ -27,6 +28,7 @@ function Characters() {
             character_name={item.name}
             species={item.species}
             status={item.status}
+            id={item.id}
           />
         ))}
       </div>

@@ -1,0 +1,106 @@
+import React from "react";
+import Image from "next/image";
+import { character } from "@/app/(main)/planets/page";
+interface Character {
+  id: number;
+  image: string;
+  species: string;
+  name: string;
+  origin: { name: string; url: string };
+  location: { name: string; url: string };
+  Gender: string;
+  type: string;
+  status: "Alive" | "Dead" | "unknown";
+}
+
+interface CharacterPageProps {
+  params: {
+    character: string;
+  };
+}
+
+const Character: React.FC<CharacterPageProps> = ({ params }) => {
+  const characterId = params.character;
+
+  const characterData: Character | undefined = character.data.results.find(
+    (char: Character) => char.id.toString() === characterId
+  );
+
+  if (!characterData) {
+    return <div>Character not found</div>;
+  }
+
+  return (
+    <section className="w-full flex items-stretch justify-center mt-20 mb-20 ite">
+      <div className="bg-white w-full max-w-[1000px] rounded-4xl p-10 flex gap-10">
+        <div className="border-2 border-black rounded-3xl overflow-hidden  w-[500px]  relative">
+          <Image alt="image" src={characterData.image} fill objectFit="cover" />
+        </div>
+
+        <div className="flex flex-col gap-10 text-black w-2/3">
+          <div className="flex flex-col gap-5 bg-primary-100 rounded-3xl p-10 border-2 border-black">
+            <h1 className="text-5xl font-bold font-mono ">
+              {characterData.name}
+            </h1>
+            <hr className="w-1/2" />
+            <div className="*:font-extrabold *:flex *:gap-1 *:font-mono">
+              <p>
+                Status:
+                <span className="font-extralight">
+                  {characterData.status ? characterData.status : "unknown"}
+                </span>
+              </p>
+              <p>
+                Species:
+                <span className="font-extralight">
+                  {characterData.species ? characterData.species : "unknown"}
+                </span>
+              </p>
+              <p>
+                Type:{" "}
+                <span className="font-extralight">
+                  {characterData.type ? characterData.type : "unknown"}
+                </span>
+              </p>
+              <p>
+                Gender:
+                <span className="font-extralight">
+                  {characterData.Gender ? characterData.Gender : "unknown"}
+                </span>
+              </p>
+              <p>
+                Origin:
+                <span className="font-extralight">
+                  {characterData.origin.name
+                    ? characterData.origin.name
+                    : "unknown"}
+                </span>
+              </p>
+              <p>
+                Location:
+                <span className="font-light">
+                  {characterData.location.name
+                    ? characterData.location.name
+                    : "unknown"}
+                </span>
+              </p>
+            </div>
+          </div>
+          <div className="flex gap-2 bg-primary-100 rounded-3xl p-4 justify-evenly h-20">
+            <Image src={"/svg/gun-icon.svg"} width={60} height={60} alt="" />
+            <Image src={"/svg/atom-icon.svg"} width={60} height={60} alt="" />
+            <Image
+              src={"/svg/neptune-icon.svg"}
+              width={60}
+              height={60}
+              alt=""
+            />
+            <Image src={"/svg/space-icon.svg"} width={60} height={60} alt="" />
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Character;

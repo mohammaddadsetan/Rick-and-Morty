@@ -7,6 +7,7 @@ interface Character {
   image: string;
   species: string;
   name: string;
+  id: number;
   status: "Alive" | "Dead" | "unknown";
 }
 
@@ -101,6 +102,7 @@ export default function CharacterSection({ character }: CharacterSectionProps) {
               species={char.species}
               character_name={char.name}
               status={char.status}
+              id={char.id}
             />
           ))}
         </div>

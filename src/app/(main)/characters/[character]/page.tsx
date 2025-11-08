@@ -1,9 +1,14 @@
-interface characterProps {
+import React from "react";
+import Character from "@/components/layouts/character/Character";
+
+interface CharacterPageProps {
   params: {
     character: string;
   };
 }
 
-export function page({ params }: characterProps) {
-  return <div>page</div>;
-}
+const Page: React.FC<CharacterPageProps> = ({ params }) => {
+  return <Character params={params} />;
+};
+
+export default Page;
