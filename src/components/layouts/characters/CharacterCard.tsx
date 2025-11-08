@@ -1,10 +1,12 @@
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 interface characterCardProps {
   character_img: string;
   character_name: string;
   species: string;
+  id: number;
   status: "Alive" | "Dead" | "unknown";
 }
 
@@ -12,6 +14,7 @@ export default function CharacterCard({
   character_img,
   character_name,
   species,
+  id,
   status = "Alive",
 }: characterCardProps) {
   const color =
@@ -23,9 +26,11 @@ export default function CharacterCard({
           <Image alt="like" src={"/svg/star.svg"} width={27} height={27} />
         </button>
         <Image alt="character" src={character_img} objectFit="cover" fill />
-        <button className="bg-neutral-800 cursor-pointer drop-shadow-[0px_0px_10px] drop-shadow-[#0000004f] -mb-8 mr-1 rounded-full text-2xl size-20 flex items-center justify-center absolute bottom-0 right-0 border-4 border-[#87F54E]">
+        <Link
+          href={`/characters/${id}`}
+          className="bg-neutral-800 hover:scale-108 transition-all duration-300 cursor-pointer drop-shadow-[0px_0px_10px] drop-shadow-[#0000004f] -mb-8 mr-1 rounded-full text-2xl size-20 flex items-center justify-center absolute bottom-0 right-0 border-4 border-[#87F54E]">
           Go
-        </button>
+        </Link>
       </div>
       <div className="text-[#4D4D4D] bg-[#87F54E] px-4 py-4 flex flex-col pb-0 gap-3">
         <div>
