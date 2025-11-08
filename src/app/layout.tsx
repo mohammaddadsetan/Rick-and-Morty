@@ -37,7 +37,8 @@ export default function RootLayout({
           backgroundSize: "cover",
         }}>
         <Header />
-        {children}
+        <main>{children}</main>
+
         <Footer />
       </body>
     </html>

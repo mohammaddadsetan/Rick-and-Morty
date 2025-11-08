@@ -32,16 +32,14 @@ const page = async ({ params }: ParamsProps) => {
 
   console.log(planetCharacter);
   return (
-    <main>
-      <section className="text-neutral-50 flex flex-col items-center pb-20">
-        <PlanetInfoSection
-          planetData={PlanetData.data}
-          planetImg={planetImg?.url || "/svg/planet1.svg"}
-        />
+    <section className="text-neutral-50 flex flex-col items-center pb-20">
+      <PlanetInfoSection
+        planetData={PlanetData.data}
+        planetImg={planetImg?.url || "/svg/planet1.svg"}
+      />
 
-        <CharacterSection character={planetCharacter} />
-      </section>
-    </main>
+      <CharacterSection character={planetCharacter} />
+    </section>
   );
 };
 export default page;
