@@ -1,6 +1,6 @@
 "use client";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import CharacterCard from "./CharacterCard";
+import CharacterCard from "../../characters/CharacterCard";
 import { useState, useRef, useEffect } from "react";
 
 interface Character {
@@ -86,7 +86,9 @@ export default function CharacterSection({ character }: CharacterSectionProps) {
       <div className="overflow-hidden max-w-[880px] w-full">
         <div
           ref={sliderRef}
-          className="flex gap-2 transition-transform duration-500 ease-in-out cursor-pointer select-none"
+          className={`flex gap-2 transition-transform duration-500 ease-in-out cursor-grab select-none ${
+            isDragging ? "cursor-grabbing" : ""
+          }`}
           style={{ transform: `translateX(${currentTranslate}px)` }}
           onMouseDown={handleMouseDown}
           onMouseMove={handleMouseMove}
