@@ -1,5 +1,5 @@
 "use client";
-import CharacterCard from "@/components/layouts/planet/characterSection/CharacterCard";
+import CharacterCard from "@/components/layouts/characters/CharacterCard";
 import { character } from "@/app/(main)/planets/page";
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
