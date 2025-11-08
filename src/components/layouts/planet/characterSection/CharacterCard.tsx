@@ -17,18 +17,12 @@ export default function CharacterCard({
   const color =
     status === "Alive" ? "#87F54E" : status === "Dead" ? "#fb2c36" : "#ffd230";
   return (
-    <div className="w-full min-w-72 overflow-hidden rounded-3xl ">
+    <div className="w-full min-w-72 max-w-72 overflow-hidden rounded-3xl ">
       <div className="w-full h-72 relative">
         <div className="bg-neutral-800   rounded-full size-10 flex items-center justify-center absolute top-0 left-0 overflow-hidden m-1 z-10">
           <Image alt="like" src={"/svg/star.svg"} width={27} height={27} />
         </div>
-        <Image
-          alt="character"
-          src={character_img}
-          width={300}
-          height={400}
-          objectFit="cover"
-        />
+        <Image alt="character" src={character_img} objectFit="cover" fill />
         <div className="bg-neutral-800 drop-shadow-[0px_0px_10px] drop-shadow-[#0000004f] -mb-8 mr-1 rounded-full text-2xl size-20 flex items-center justify-center absolute bottom-0 right-0 border-4 border-[#87F54E]">
           Go
         </div>
