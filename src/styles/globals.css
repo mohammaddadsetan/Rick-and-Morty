@@ -5,7 +5,10 @@
 body {
   color: white;
 }
-
+input {
+  border: none;
+  outline: none;
+}
 @keyframes zoomIn {
   from {
     transform: scale(0.2) translateY(-50px);
