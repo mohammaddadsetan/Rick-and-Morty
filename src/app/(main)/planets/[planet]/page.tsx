@@ -30,9 +30,8 @@ const page = async ({ params }: ParamsProps) => {
       char.location.url === PlanetData.data.url
   );
 
-  console.log(planetCharacter);
   return (
-    <section className="text-neutral-50 flex flex-col items-center pb-20">
+    <section className="text-neutral-50 flex flex-col items-center pb-20 w-full">
       <PlanetInfoSection
         planetData={PlanetData.data}
         planetImg={planetImg?.url || "/svg/planet1.svg"}

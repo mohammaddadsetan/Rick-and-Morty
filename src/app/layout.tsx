@@ -37,7 +37,7 @@ export default function RootLayout({
           backgroundSize: "cover",
         }}>
         <Header />
-        <main>{children}</main>
+        <main className="flex items-center">{children}</main>
 
         <Footer />
       </body>
