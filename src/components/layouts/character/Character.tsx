@@ -19,8 +19,9 @@ interface CharacterPageProps {
   };
 }
 
-const Character: React.FC<CharacterPageProps> = ({ params }) => {
-  const characterId = params.character;
+const Character: React.FC<CharacterPageProps> = async ({ params }) => {
+  const param = await params;
+  const characterId = param.character;
 
   const characterData: Character | undefined = character.data.results.find(
     (char: Character) => char.id.toString() === characterId
