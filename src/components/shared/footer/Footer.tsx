@@ -21,11 +21,11 @@ export default function Footer() {
             <Link className="hover:text-[#87F54E]" href={"/planets"}>
               Planets
             </Link>
-            <Link className="hover:text-[#87F54E]" href={"/"}>
-              Favorites
+            <Link className="hover:text-[#87F54E]" href={"/characters"}>
+              Characters
             </Link>
             <Link className="hover:text-[#87F54E]" href={"/"}>
-              Contact
+              Favorites
             </Link>
           </div>
           <div
