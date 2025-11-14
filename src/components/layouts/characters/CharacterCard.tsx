@@ -1,3 +1,4 @@
+import { Star } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -6,6 +7,8 @@ interface characterCardProps {
   character_img: string;
   character_name: string;
   species: string;
+  isFavorite?: boolean;
+  onFavorite?: (id: number) => void;
   id: number;
   status: "Alive" | "Dead" | "unknown";
 }
@@ -14,6 +17,8 @@ export default function CharacterCard({
   character_img,
   character_name,
   species,
+  isFavorite,
+  onFavorite,
   id,
   status = "Alive",
 }: characterCardProps) {
@@ -22,8 +27,13 @@ export default function CharacterCard({
   return (
     <div className="w-full min-w-72 max-w-72 overflow-hidden rounded-3xl ">
       <div className="w-full h-72 relative">
-        <button className="bg-neutral-800 cursor-pointer   rounded-full size-10 flex items-center justify-center absolute top-0 left-0 overflow-hidden m-1 z-10">
-          <Image alt="like" src={"/svg/star.svg"} width={27} height={27} />
+        <button
+          onClick={() => onFavorite?.(id)}
+          className="bg-neutral-800 cursor-pointer   rounded-full size-10 flex items-center justify-center absolute top-0 left-0 overflow-hidden m-1 z-10">
+          <Star
+            color={`${isFavorite ? "#ffd900" : "white"}`}
+            fill={`${isFavorite ? "#ffd900" : ""}`}
+          />
         </button>
         <Image alt="character" src={character_img} objectFit="cover" fill />
         <Link
@@ -32,7 +42,7 @@ export default function CharacterCard({
           Go
         </Link>
       </div>
-      <div className="text-[#4D4D4D] bg-[#87F54E] px-4 py-4 flex flex-col pb-0 gap-3">
+      <div className="text-[#4d4d4d] bg-[#87F54E] px-4 py-4 flex flex-col pb-0 gap-3">
         <div>
           <p className="text-lg font-bold">Name:</p>
           <p>{character_name}</p>
