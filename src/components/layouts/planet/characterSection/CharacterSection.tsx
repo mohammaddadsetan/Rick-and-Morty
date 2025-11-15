@@ -16,28 +16,12 @@ interface CharacterSectionProps {
 }
 
 export default function CharacterSection({ character }: CharacterSectionProps) {
-  const [favorites, setFavorites] = useState<number[]>([]);
   const [startIndex, setStartIndex] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
   const [currentTranslate, setCurrentTranslate] = useState(0);
 
   const sliderRef = useRef<HTMLDivElement>(null);
-
-  const toggleFavorite = (id: number) => {
-    setFavorites((prev) => {
-      const newFavs = prev.includes(id)
-        ? prev.filter((x) => x !== id)
-        : [...prev, id];
-
-      localStorage.setItem("favorites", JSON.stringify(newFavs));
-      return newFavs;
-    });
-  };
-  useEffect(() => {
-    const saved = JSON.parse(localStorage.getItem("favorites") || "[]");
-    setFavorites(saved);
-  }, []);
 
   const handleMouseDown = (e: React.MouseEvent) => {
     if (character.length >= 3) {
@@ -119,8 +103,6 @@ export default function CharacterSection({ character }: CharacterSectionProps) {
               character_name={char.name}
               status={char.status}
               id={char.id}
-              isFavorite={favorites.includes(char.id)}
-              onFavorite={toggleFavorite}
             />
           ))}
         </div>

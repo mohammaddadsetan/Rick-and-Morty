@@ -4,6 +4,7 @@ import "./globals.css";
 import "@/styles/globals.css";
 import Header from "@/components/shared/header/Header";
 import Footer from "@/components/shared/footer/Footer";
+import FavoriteProvider from "@/context/FavoriteContext";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -36,10 +37,11 @@ export default function RootLayout({
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
         }}>
-        <Header />
-        <main className="flex items-center">{children}</main>
-
-        <Footer />
+        <FavoriteProvider>
+          <Header />
+          <main className="flex items-center">{children}</main>
+          <Footer />
+        </FavoriteProvider>
       </body>
     </html>
   );
