@@ -3,8 +3,13 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { HeaderLinks } from "./Data";
 import MultiNavButton from "@/components/ui/MultiNavButton";
+import { useContext } from "react";
+import { FavoriteContext } from "@/context/FavoriteContext";
 export default function Header() {
   const pathname = usePathname();
+  const favoritesContext = useContext(FavoriteContext);
+  if (!favoritesContext) return null;
+  const { favorites } = favoritesContext;
   return pathname === "/" ? (
     <header className="px-10 py-5">
       <Image
@@ -29,6 +34,8 @@ export default function Header() {
         <MultiNavButton
           data={HeaderLinks}
           containerClassName="text-primary-100 gap-10 text-lg"
+          countBox={4}
+          countNumber={favorites.length}
         />
       </div>
     </header>

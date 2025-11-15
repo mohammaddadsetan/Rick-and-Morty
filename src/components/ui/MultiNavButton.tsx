@@ -1,4 +1,5 @@
 "use client";
+import { Heart } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
@@ -9,6 +10,8 @@ type MultiNavLinkProps = {
   containerClassName?: string;
   data: Array<{ href: string; text: string }>;
   activeClassName?: string;
+  countBox?: number;
+  countNumber?: number;
 };
 
 export default function MultiNavButton({
@@ -16,6 +19,8 @@ export default function MultiNavButton({
   linkClassName,
   data,
   activeClassName,
+  countBox,
+  countNumber,
   children,
 }: MultiNavLinkProps) {
   const pathname = usePathname();
@@ -45,7 +50,14 @@ export default function MultiNavButton({
               </span>
             )}
 
-            <span className="relative z-20">{item.text}</span>
+            <span className="relative z-20 flex  items-center justify-center gap-1">
+              {item.text}
+              {countBox === index + 1 && (countNumber ?? 0) >= 0 && (
+                <span className=" flex items-center justify-center text-white bg-red-500 rounded-full text-sm  font-mono  size-5 shrink-0">
+                  {countNumber}
+                </span>
+              )}
+            </span>
 
             {children}
           </Link>

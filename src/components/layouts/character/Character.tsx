@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import { character } from "@/app/(main)/planets/page";
+import { PlanetsImgData } from "../planets/PlanetsData";
 interface Character {
   id: number;
   image: string;
@@ -26,14 +27,24 @@ const Character: React.FC<CharacterPageProps> = async ({ params }) => {
   const characterData: Character | undefined = character.data.results.find(
     (char: Character) => char.id.toString() === characterId
   );
-
   if (!characterData) {
     return <div>Character not found</div>;
   }
-
+  const planetId = characterData?.location.url.split("/").pop();
+  const planetImg = PlanetsImgData.find(
+    (item) => `/svg/planet${planetId}.svg` === item.url
+  )?.url;
+  console.log(planetId);
   return (
-    <section className="w-full flex items-stretch justify-center mt-20 mb-20 ite">
-      <div className="bg-white w-full max-w-[1000px] rounded-4xl p-10 flex gap-10">
+    <section className="w-full flex items-stretch justify-center mt-20 mb-20 ">
+      <div className="bg-white w-full max-w-[1000px] rounded-4xl p-10 flex gap-10 relative">
+        <Image
+          width={150}
+          height={150}
+          src={planetImg || `/svg/planet${planetId}.svg`}
+          alt="Image"
+          className="absolute -right-15 -top-15 rotate"
+        />
         <div className="border-2 border-black rounded-3xl overflow-hidden  w-[500px]  relative">
           <Image alt="image" src={characterData.image} fill objectFit="cover" />
         </div>
