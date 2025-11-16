@@ -35,7 +35,7 @@ export default function Select({
         fullSelect ? "w-full" : "w-fit"
       }`}>
       <button
-        onBlur={(e) => {
+        onBlur={() => {
           setIsOpen(false);
         }}
         ref={buttonRef}

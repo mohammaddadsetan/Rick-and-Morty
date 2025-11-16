@@ -7,8 +7,6 @@ interface CharacterPageProps {
   };
 }
 
-const Page: React.FC<CharacterPageProps> = ({ params }) => {
+export default function Page({ params }: CharacterPageProps) {
   return <Character params={params} />;
-};
-
-export default Page;
+}

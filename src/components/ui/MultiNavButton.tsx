@@ -1,5 +1,4 @@
 "use client";
-import { Heart } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
