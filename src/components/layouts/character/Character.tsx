@@ -34,14 +34,13 @@ const Character: React.FC<CharacterPageProps> = async ({ params }) => {
   const planetImg = PlanetsImgData.find(
     (item) => `/svg/planet${planetId}.svg` === item.url
   )?.url;
-  console.log(planetId);
   return (
     <section className="w-full flex items-stretch justify-center mt-20 mb-20 ">
       <div className="bg-white w-full max-w-[1000px] rounded-4xl p-10 flex gap-10 relative">
         <Image
           width={150}
           height={150}
-          src={planetImg || `/svg/planet${planetId}.svg`}
+          src={planetImg || `/svg/unknown_planet.png`}
           alt="Image"
           className="absolute -right-15 -top-15 rotate"
         />
