@@ -1,10 +1,12 @@
 "use client";
 import CharacterCard from "@/components/layouts/characters/CharacterCard";
 import { character } from "@/app/(main)/planets/page";
-import { useState } from "react";
+import React, { useContext, useState } from "react";
 import { ChevronDown } from "lucide-react";
 import Select from "@/components/ui/Select";
 import Input from "@/components/ui/Input";
+import { usePathname } from "next/navigation";
+import { FavoriteContext } from "@/context/FavoriteContext";
 interface Character {
   image: string;
   species: string;
@@ -27,7 +29,16 @@ function Characters() {
   const [filteredStatus, setFilteredStatus] = useState<string>();
   const [filteredSpecies, setFilteredSpecies] = useState<string>();
   const [filteredName, setFilteredName] = useState<string>();
-  const characterData: Character[] = character.data.results;
+  const routePathName = usePathname();
+  const ctx = useContext(FavoriteContext);
+  if (!ctx) return null;
+  const { favorites } = ctx;
+  const characterData: Character[] =
+    routePathName != "/favorites"
+      ? character.data.results
+      : character.data.results.filter((item: Character) =>
+          favorites.includes(item.id)
+        );
 
   const filteredCharacter = characterData.filter((item) => {
     const matchStatus = filteredStatus ? item.status === filteredStatus : true;
@@ -57,39 +68,47 @@ function Characters() {
   };
   return (
     <section className="w-full flex flex-col items-center gap-10">
-      <div className="flex items-center justify-center gap-5">
-        <Input placeholder="search by name" onChange={handleNameChange} />
-        <Select
-          options={statusOption}
-          label="status"
-          onChange={handleStatusChange}
-        />
-        <Select
-          options={speciesOption}
-          label="species"
-          onChange={handleSpeciesChange}
-        />
-      </div>
+      {characterData.length !== 0 ? (
+        <>
+          <div className="flex items-center justify-center gap-5">
+            <Input placeholder="search by name" onChange={handleNameChange} />
+            <Select
+              options={statusOption}
+              label="status"
+              onChange={handleStatusChange}
+            />
+            <Select
+              options={speciesOption}
+              label="species"
+              onChange={handleSpeciesChange}
+            />
+          </div>
 
-      <div className="grid grid-cols-[auto_auto_auto_auto] justify-center items-center  w-auto mx-auto my-10 gap-10 ">
-        {visibleCharacters.map((item, index) => (
-          <CharacterCard
-            key={index}
-            character_img={item.image}
-            character_name={item.name}
-            species={item.species}
-            status={item.status}
-            id={item.id}
-          />
-        ))}
-      </div>
+          <div className="flex flex-wrap justify-center items-center  w-auto mx-auto my-10 gap-10 ">
+            {visibleCharacters.map((item, index) => (
+              <CharacterCard
+                key={index}
+                character_img={item.image}
+                character_name={item.name}
+                species={item.species}
+                status={item.status}
+                id={item.id}
+              />
+            ))}
+          </div>
 
-      {!moreCharacters && filteredCharacter.length > 8 && (
-        <ChevronDown
-          className="text-primary-100 cursor-pointer animate-bounce"
-          size={90}
-          onClick={() => setMoreCharacters(true)}
-        />
+          {!moreCharacters && filteredCharacter.length > 8 && (
+            <ChevronDown
+              className="text-primary-100 cursor-pointer animate-bounce"
+              size={90}
+              onClick={() => setMoreCharacters(true)}
+            />
+          )}
+        </>
+      ) : (
+        <div>
+          <h1>es gibt keine character</h1>
+        </div>
       )}
     </section>
   );
