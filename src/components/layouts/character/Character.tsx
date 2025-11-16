@@ -19,7 +19,7 @@ interface CharacterPageProps {
   params: { character: string };
 }
 
-export default async function Character({ params }: CharacterPageProps) {
+export default function Character({ params }: CharacterPageProps) {
   const characterId = params.character;
 
   const characterData: CharacterData | undefined = character.data.results.find(
