@@ -2,7 +2,8 @@ import React from "react";
 import Image from "next/image";
 import { character } from "@/app/(main)/planets/page";
 import { PlanetsImgData } from "../planets/PlanetsData";
-interface Character {
+
+interface CharacterData {
   id: number;
   image: string;
   species: string;
@@ -15,27 +16,25 @@ interface Character {
 }
 
 interface CharacterPageProps {
-  params: {
-    character: string;
-  };
+  params: { character: string };
 }
 
-const Character: React.FC<CharacterPageProps> = async ({ params }) => {
-  const param = await params;
-  const characterId = param.character;
+export default async function Character({ params }: CharacterPageProps) {
+  const characterId = await params.character;
 
-  const characterData: Character | undefined = character.data.results.find(
-    (char: Character) => char.id.toString() === characterId
+  const characterData: CharacterData | undefined = character.data.results.find(
+    (char: CharacterData) => char.id.toString() === characterId
   );
-  if (!characterData) {
-    return <div>Character not found</div>;
-  }
-  const planetId = characterData?.location.url.split("/").pop();
+
+  if (!characterData) return <div>Character not found</div>;
+
+  const planetId = characterData.location.url.split("/").pop();
   const planetImg = PlanetsImgData.find(
     (item) => `/svg/planet${planetId}.svg` === item.url
   )?.url;
+
   return (
-    <section className="w-full flex items-stretch justify-center mt-20 mb-20 ">
+    <section className="w-full flex items-stretch justify-center mt-20 mb-20">
       <div className="bg-white w-full max-w-[1000px] rounded-4xl p-10 flex gap-10 relative">
         <Image
           width={150}
@@ -44,59 +43,62 @@ const Character: React.FC<CharacterPageProps> = async ({ params }) => {
           alt="Image"
           className="absolute -right-15 -top-15 rotate"
         />
-        <div className="border-2 border-black rounded-3xl overflow-hidden  w-[500px]  relative">
-          <Image alt="image" src={characterData.image} fill objectFit="cover" />
+
+        <div className="border-2 border-black rounded-3xl overflow-hidden w-[500px] relative">
+          <Image
+            alt="image"
+            src={characterData.image}
+            fill
+            style={{ objectFit: "cover" }}
+          />
         </div>
 
         <div className="flex flex-col gap-10 text-black w-2/3">
           <div className="flex flex-col gap-5 bg-primary-100 rounded-3xl p-10 border-2 border-black">
-            <h1 className="text-5xl font-bold font-mono ">
+            <h1 className="text-5xl font-bold font-mono">
               {characterData.name}
             </h1>
             <hr className="w-1/2" />
-            <div className="*:font-extrabold *:flex *:gap-1 *:font-mono">
+            <div className="flex flex-col gap-1 font-mono">
               <p>
-                Status:
+                Status:{" "}
                 <span className="font-extralight">
-                  {characterData.status ? characterData.status : "unknown"}
+                  {characterData.status || "unknown"}
                 </span>
               </p>
               <p>
-                Species:
+                Species:{" "}
                 <span className="font-extralight">
-                  {characterData.species ? characterData.species : "unknown"}
+                  {characterData.species || "unknown"}
                 </span>
               </p>
               <p>
                 Type:{" "}
                 <span className="font-extralight">
-                  {characterData.type ? characterData.type : "unknown"}
+                  {characterData.type || "unknown"}
                 </span>
               </p>
               <p>
-                Gender:
+                Gender:{" "}
                 <span className="font-extralight">
-                  {characterData.Gender ? characterData.Gender : "unknown"}
+                  {characterData.Gender || "unknown"}
                 </span>
               </p>
               <p>
-                Origin:
+                Origin:{" "}
                 <span className="font-extralight">
-                  {characterData.origin.name
-                    ? characterData.origin.name
-                    : "unknown"}
+                  {characterData.origin.name || "unknown"}
                 </span>
               </p>
               <p>
-                Location:
+                Location:{" "}
                 <span className="font-light">
-                  {characterData.location.name
-                    ? characterData.location.name
-                    : "unknown"}
+                  {characterData.location.name || "unknown"}
                 </span>
               </p>
             </div>
           </div>
+
           <div className="flex gap-2 bg-primary-100 rounded-3xl p-4 justify-evenly h-20">
             <Image src={"/svg/gun-icon.svg"} width={60} height={60} alt="" />
             <Image src={"/svg/atom-icon.svg"} width={60} height={60} alt="" />
@@ -112,6 +114,4 @@ const Character: React.FC<CharacterPageProps> = async ({ params }) => {
       </div>
     </section>
   );
-};
-
-export default Character;
+}
