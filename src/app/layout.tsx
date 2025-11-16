@@ -1,19 +1,10 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import "@/styles/globals.css";
 import Header from "@/components/shared/header/Header";
 import Footer from "@/components/shared/footer/Footer";
 import FavoriteProvider from "@/context/FavoriteContext";
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "Rick and Morty",
@@ -27,19 +18,19 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} grid grid-rows-[150px_1fr_100px] min-h-screen  antialiased bg-no-repeat  bg-cover bg-center`}
-        style={{
-          backgroundImage:
-            "url('/svg/fondo-hiperespacial-3d-efecto-tunel-urdimbre 1.svg')",
+      <body className="relative h-screen overflow-x-hidden grid grid-rows-[150px_1fr_100px]">
+        <div className="fixed inset-0 -z-100">
+          <Image
+            src="/svg/fondo-hiperespacial-3d-efecto-tunel-urdimbre 1.svg"
+            alt="background"
+            className="w-full h-full object-cover"
+            fill
+          />
+        </div>
 
-          backgroundPosition: "center20%",
-          backgroundRepeat: "no-repeat",
-          backgroundSize: "cover",
-        }}>
         <FavoriteProvider>
           <Header />
-          <main className="flex items-center">{children}</main>
+          <main className="flex items-center justify-center">{children}</main>
           <Footer />
         </FavoriteProvider>
       </body>
