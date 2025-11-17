@@ -1,44 +1,38 @@
 import { PlanetsImgData } from "../../../../components/layouts/planets/PlanetsData";
-import { GetLocationsById } from "@/services/contentSercives";
 import CharacterSection from "@/components/layouts/planet/characterSection/CharacterSection";
-import { character } from "../page";
 import PlanetInfoSection from "@/components/layouts/planet/PlanetInfoSection";
+import { getCharacters, getLocationById } from "@/services/rickandmorty";
+import { CharacterType } from "@/services/rickandmorty";
 
 interface ParamsProps {
-  params: {
-    planet: string;
-  };
-}
-interface Character {
-  origin: { name: string; url: string };
-  location: { name: string; url: string };
+  params: Promise<{ planet: string }>;
 }
 
-const page = async ({ params }: ParamsProps) => {
-  const paramsData = await params;
-  const planetNumber = paramsData.planet.split("_")[1];
+export default async function Page({ params }: ParamsProps) {
+  const { planet } = await params;
+  const planetNumber = parseInt(planet.split("_")[1]);
 
   const planetImg = PlanetsImgData.find(
     (img) => img.url === `/svg/planet${planetNumber}.svg`
   );
 
-  const PlanetData = await GetLocationsById(Number(planetNumber));
+  const PlanetData = await getLocationById(planetNumber);
+  const characters = await getCharacters();
 
-  const planetCharacter = character.data.results.filter(
-    (char: Character) =>
-      char.origin.url === PlanetData.data.url ||
-      char.location.url === PlanetData.data.url
+  const planetCharacter = characters.filter(
+    (char: CharacterType) =>
+      char.origin.url === PlanetData?.url ||
+      char.location.url === PlanetData?.url
   );
 
   return (
     <section className="text-neutral-50 flex flex-col items-center pb-20 w-full">
       <PlanetInfoSection
-        planetData={PlanetData.data}
+        planetData={PlanetData}
         planetImg={planetImg?.url || "/svg/planet1.svg"}
       />
 
       <CharacterSection character={planetCharacter} />
     </section>
   );
-};
-export default page;
+}

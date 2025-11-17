@@ -1,12 +1,15 @@
 import React from "react";
 import Character from "@/components/layouts/character/Character";
+import { getCharacterById } from "@/services/rickandmorty";
 
-interface CharacterPageProps {
-  params: {
-    character: string;
-  };
-}
+type CharacterPageProps = {
+  params: Promise<{ character: string }>;
+};
 
-export default function Page({ params }: CharacterPageProps) {
-  return <Character params={params} />;
+export default async function Page({ params }: CharacterPageProps) {
+  const { character } = await params;
+  const characterId = parseInt(character);
+  const characterData = await getCharacterById(characterId);
+
+  return <Character characterData={characterData} />;
 }

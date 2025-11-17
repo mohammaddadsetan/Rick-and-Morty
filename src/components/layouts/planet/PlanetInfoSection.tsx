@@ -1,13 +1,8 @@
 import Image from "next/image";
 import React from "react";
-
+import { LocationType } from "@/services/rickandmorty";
 interface planetDataProps {
-  planetData: {
-    name: string;
-    type: string;
-    dimension: string;
-    created: string;
-  };
+  planetData: LocationType | null;
   planetImg: string;
 }
 export default function PlanetInfoSection({
@@ -31,7 +26,7 @@ export default function PlanetInfoSection({
           Planet:
           <ul>
             <li className="text-lg font-normal list-disc pl-5 list-inside">
-              {planetData.name}
+              {planetData?.name}
             </li>
           </ul>
         </li>
@@ -39,7 +34,7 @@ export default function PlanetInfoSection({
           Type:
           <ul>
             <li className="text-lg font-normal list-disc pl-5 list-inside">
-              {planetData.type}
+              {planetData?.type}
             </li>
           </ul>
         </li>
@@ -47,7 +42,7 @@ export default function PlanetInfoSection({
           Dimension:
           <ul>
             <li className="text-lg font-normal list-disc pl-5 list-inside">
-              {planetData.dimension}
+              {planetData?.dimension}
             </li>
           </ul>
         </li>
@@ -55,7 +50,7 @@ export default function PlanetInfoSection({
           Created:
           <ul>
             <li className="text-lg font-normal list-disc pl-5 list-inside">
-              {planetData.created}
+              {planetData?.created}
             </li>
           </ul>
         </li>

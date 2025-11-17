@@ -1,19 +1,12 @@
 "use client";
 import CharacterCard from "@/components/layouts/characters/CharacterCard";
-import { character } from "@/app/(main)/planets/page";
 import React, { useContext, useState } from "react";
 import { ChevronDown } from "lucide-react";
 import Select from "@/components/ui/Select";
 import Input from "@/components/ui/Input";
 import { usePathname } from "next/navigation";
 import { FavoriteContext } from "@/context/FavoriteContext";
-interface Character {
-  image: string;
-  species: string;
-  name: string;
-  id: number;
-  status: "Alive" | "Dead" | "unknown";
-}
+import { CharacterType } from "@/services/rickandmorty";
 const statusOption = [
   { value: "Alive", label: "Alive" },
   { value: "Dead", label: "Dead" },
@@ -24,22 +17,23 @@ const speciesOption = [
   { value: "Human", label: "Human" },
 ];
 
-function Characters() {
+interface characterProps {
+  character: CharacterType[];
+}
+
+function Characters({ character }: characterProps) {
   const [moreCharacters, setMoreCharacters] = useState(false);
   const [filteredStatus, setFilteredStatus] = useState<string>();
   const [filteredSpecies, setFilteredSpecies] = useState<string>();
   const [filteredName, setFilteredName] = useState<string>();
-  const routePathName = usePathname();
+  const pathname = usePathname();
   const ctx = useContext(FavoriteContext);
   if (!ctx) return null;
   const { favorites } = ctx;
-  const characterData: Character[] =
-    routePathName != "/favorites"
-      ? character.data.results
-      : character.data.results.filter((item: Character) =>
-          favorites.includes(item.id)
-        );
-
+  const characterData: CharacterType[] =
+    pathname !== "/favorites"
+      ? character
+      : character.filter((item) => favorites.includes(item.id));
   const filteredCharacter = characterData.filter((item) => {
     const matchStatus = filteredStatus ? item.status === filteredStatus : true;
     const matchName = filteredName

@@ -1,31 +1,12 @@
 import React from "react";
 import Image from "next/image";
-import { character } from "@/app/(main)/planets/page";
 import { PlanetsImgData } from "../planets/PlanetsData";
-
-interface CharacterData {
-  id: number;
-  image: string;
-  species: string;
-  name: string;
-  origin: { name: string; url: string };
-  location: { name: string; url: string };
-  Gender: string;
-  type: string;
-  status: "Alive" | "Dead" | "unknown";
-}
-
+import { CharacterType } from "@/services/rickandmorty";
 interface CharacterPageProps {
-  params: { character: string };
+  characterData: CharacterType;
 }
 
-export default function Character({ params }: CharacterPageProps) {
-  const characterId = params.character;
-
-  const characterData: CharacterData | undefined = character.data.results.find(
-    (char: CharacterData) => char.id.toString() === characterId
-  );
-
+export default function Character({ characterData }: CharacterPageProps) {
   if (!characterData) return <div>Character not found</div>;
 
   const planetId = characterData.location.url.split("/").pop();
