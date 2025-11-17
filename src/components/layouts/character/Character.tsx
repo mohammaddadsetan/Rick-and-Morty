@@ -62,7 +62,7 @@ export default function Character({ characterData }: CharacterPageProps) {
               <p>
                 Gender:{" "}
                 <span className="font-extralight">
-                  {characterData.Gender || "unknown"}
+                  {characterData.gender || "unknown"}
                 </span>
               </p>
               <p>
