@@ -3,7 +3,7 @@ import Image from "next/image";
 import { PlanetsImgData } from "../planets/PlanetsData";
 import { CharacterType } from "@/services/rickandmorty";
 interface CharacterPageProps {
-  characterData: CharacterType;
+  characterData: CharacterType | null;
 }
 
 export default function Character({ characterData }: CharacterPageProps) {
