@@ -3,6 +3,7 @@ import CharacterSection from "@/components/layouts/planet/characterSection/Chara
 import PlanetInfoSection from "@/components/layouts/planet/PlanetInfoSection";
 import { getCharacters, getLocationById } from "@/services/rickandmorty";
 import { CharacterType } from "@/services/rickandmorty";
+import { notFound } from "next/navigation";
 
 interface ParamsProps {
   params: Promise<{ planet: string }>;
@@ -17,12 +18,20 @@ export default async function Page({ params }: ParamsProps) {
   );
 
   const PlanetData = await getLocationById(planetNumber);
+
+  if (
+    !PlanetData ||
+    PlanetData.name.split(" ")[0] != planet.split("_")[0] ||
+    PlanetData.id !== parseInt(planet.at(-1) ?? "0")
+  ) {
+    notFound();
+  }
+
   const characters = await getCharacters();
 
   const planetCharacter = characters.filter(
     (char: CharacterType) =>
-      char.origin.url === PlanetData?.url ||
-      char.location.url === PlanetData?.url
+      char.origin.url === PlanetData.url || char.location.url === PlanetData.url
   );
 
   return (
