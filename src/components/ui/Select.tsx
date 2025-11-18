@@ -8,12 +8,14 @@ interface selectProps {
   options: optionProps[];
   label: string;
   fullSelect?: boolean;
+  className?: string;
   onChange?: (value: string) => void;
 }
 export default function Select({
   options,
   label,
   fullSelect,
+  className,
   onChange,
 }: selectProps) {
   const optionsValues: optionProps[] = options;
@@ -31,7 +33,7 @@ export default function Select({
   const [dropHeight, setDropHeight] = React.useState<number | undefined>();
   return (
     <div
-      className={` flex flex-col gap-1 items-end relative transition-all duration-200 ${
+      className={`${className} flex flex-col gap-1 items-end relative transition-all duration-200 ${
         fullSelect ? "w-full" : "w-fit"
       }`}>
       <button
@@ -54,7 +56,7 @@ export default function Select({
       {isOpen && (
         <ul
           style={{ top: `${dropHeight}px` }}
-          className={`w-full max-w-[200px] bg-white text-black rounded-lg p-1 space-y-1 transition-all duration-300 absolute   z-20 cursor-pointer`}>
+          className={` w-full bg-white text-black rounded-lg p-1 space-y-1 transition-all duration-300 absolute   z-20 cursor-pointer`}>
           <li
             className="w-full p-1 hover:bg-amber-100 rounded-md "
             onMouseDown={() => {
