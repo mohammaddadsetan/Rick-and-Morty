@@ -1,13 +1,15 @@
-import React from "react";
 import Image from "next/image";
 import { PlanetsImgData } from "../planets/PlanetsData";
 import { CharacterType } from "@/services/rickandmorty";
+import { notFound } from "next/navigation";
 interface CharacterPageProps {
   characterData: CharacterType | null;
 }
 
 export default function Character({ characterData }: CharacterPageProps) {
-  if (!characterData) return <div>Character not found</div>;
+  if (!characterData) {
+    notFound();
+  }
 
   const planetId = characterData.location.url.split("/").pop();
   const planetImg = PlanetsImgData.find(
