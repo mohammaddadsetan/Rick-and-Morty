@@ -30,8 +30,10 @@ export default function MultiNavButton({
         containerClassName ? containerClassName : "gap-10 text-neutral"
       }`}>
       {data.map((item, index) => {
-        const isActive = pathname === item.href;
-
+        const isActive =
+          (item.href === "/" && pathname === "/") ||
+          (item.href !== "/" &&
+            (pathname === item.href || pathname.startsWith(item.href + "/")));
         return (
           <Link
             key={index}
