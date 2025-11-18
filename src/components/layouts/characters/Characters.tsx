@@ -64,17 +64,25 @@ function Characters({ character }: characterProps) {
     <section className="w-full flex flex-col items-center gap-10">
       {characterData.length !== 0 ? (
         <>
-          <div className="flex items-center justify-center gap-5">
-            <Input placeholder="search by name" onChange={handleNameChange} />
+          <div className="flex items-center justify-center gap-5 ">
+            <Input
+              placeholder="search by name"
+              onChange={handleNameChange}
+              className="w-[700px]"
+            />
             <Select
               options={statusOption}
               label="status"
               onChange={handleStatusChange}
+              fullSelect
+              className="max-w-[200px]"
             />
             <Select
               options={speciesOption}
               label="species"
               onChange={handleSpeciesChange}
+              fullSelect
+              className="max-w-[200px]"
             />
           </div>
 

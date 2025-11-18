@@ -3,14 +3,17 @@ import React, { useState } from "react";
 interface inputProps {
   placeholder?: string;
   onChange?: (value: string) => void;
-  width?: string;
+  className?: string;
 }
-export default function Input({ placeholder, onChange, width }: inputProps) {
+export default function Input({
+  placeholder,
+  onChange,
+  className,
+}: inputProps) {
   const [value, setValue] = useState<string>("");
   return (
     <div
-      className={`bg-white text-black  px-2 py-2 rounded-lg relative`}
-      style={{ width: width || "100%" }}>
+      className={`bg-white text-black  px-2 py-2 rounded-lg relative ${className}`}>
       <Search
         className="absolute left-2 top-1/2 -translate-y-1/2 text-gray-400"
         size={18}
