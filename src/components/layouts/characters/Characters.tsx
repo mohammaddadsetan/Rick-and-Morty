@@ -12,6 +12,7 @@ const statusOption = [
   { value: "Dead", label: "Dead" },
   { value: "unknown", label: "unknown" },
 ];
+
 const speciesOption = [
   { value: "Alien", label: "Alien" },
   { value: "Human", label: "Human" },

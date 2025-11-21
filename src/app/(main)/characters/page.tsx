@@ -1,10 +1,8 @@
-import Characters from "@/components/layouts/characters/Characters";
-import { getCharacters } from "@/services/rickandmorty";
+import CharactersConteiner from "@/components/layouts/characters/CharactersConteiner";
 import React from "react";
 
-async function page() {
-  const characters = await getCharacters();
-  return <Characters character={characters} />;
+function page() {
+  return <CharactersConteiner />;
 }
 
 export default page;
