@@ -5,6 +5,7 @@ import Header from "@/components/shared/header/Header";
 import Footer from "@/components/shared/footer/Footer";
 import FavoriteProvider from "@/context/FavoriteContext";
 import Image from "next/image";
+import MainLoading from "@/components/layouts/loading/MainLoading";
 
 export const metadata: Metadata = {
   title: "Rick and Morty",
@@ -18,13 +19,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="relative h-screen overflow-x-hidden grid grid-rows-[150px_1fr_100px]">
+      <body className="relative h-screen overflow-x-hidden grid grid-rows-[150px_1fr_100px] bg-black">
+        <MainLoading />
         <div className="fixed inset-0 -z-100">
           <Image
             src="/svg/fondo-hiperespacial-3d-efecto-tunel-urdimbre 1.svg"
             alt="background"
             className="w-full h-full object-cover"
             fill
+            priority={true}
           />
         </div>
 
