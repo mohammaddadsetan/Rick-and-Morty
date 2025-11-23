@@ -12,7 +12,7 @@ interface LineData {
 }
 
 export default function MainLoading() {
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const containerRef = useRef<HTMLDivElement | null>(null);
   const linesRef = useRef<LineData[]>([]);
@@ -23,8 +23,6 @@ export default function MainLoading() {
     const hasVisited = sessionStorage.getItem("hasVisited");
     if (hasVisited) {
       setLoading(false);
-    } else {
-      setLoading(true);
     }
     const container = containerRef.current;
     if (!container) return;
