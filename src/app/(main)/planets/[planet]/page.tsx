@@ -11,29 +11,40 @@ interface ParamsProps {
 
 export default async function Page({ params }: ParamsProps) {
   const { planet } = await params;
-  const planetNumber = parseInt(planet.split("_")[1]);
 
-  const planetImg = PlanetsImgData.find(
-    (img) => img.url === `/svg/planet${planetNumber}.svg`
-  );
-
-  const PlanetData = await getLocationById(planetNumber);
-
-  if (
-    !PlanetData ||
-    PlanetData.name.split(" ")[0] != planet.split("_")[0] ||
-    PlanetData.id !== parseInt(planet.at(-1) ?? "0")
-  ) {
+  const match = planet.match(/^([A-Za-z'\-\s]+)_(\d+)$/);
+  if (!match) {
     notFound();
   }
 
+  const [, namePart, idPart] = match;
+  const planetId = Number(idPart);
+
+  if (planetId < 1 || planetId > 126) {
+    notFound();
+  }
+
+  const PlanetData = await getLocationById(planetId);
+
+  if (
+    !PlanetData ||
+    PlanetData.id !== planetId ||
+    !PlanetData.name
+      .toLowerCase()
+      .replace(/[^a-z]/g, "")
+      .startsWith(namePart.toLowerCase().replace(/[^a-z]/g, ""))
+  ) {
+    notFound();
+  }
   const characters = await getCharacters();
 
   const planetCharacter = characters.filter(
     (char: CharacterType) =>
       char.origin.url === PlanetData.url || char.location.url === PlanetData.url
   );
-
+  const planetImg = PlanetsImgData.find(
+    (img) => img.url === `/svg/planet${planetId}.svg`
+  );
   return (
     <section className="text-neutral-50 flex flex-col items-center pb-20 w-full">
       <PlanetInfoSection
