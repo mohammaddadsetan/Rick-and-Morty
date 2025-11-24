@@ -161,3 +161,29 @@ input {
 .animate-shimmer {
   animation: shimmer 2s infinite linear;
 }
+
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.animate-spin-slow {
+  animation: spin-slow 20s linear infinite;
+}
+
+@keyframes typing-delay {
+  0%,
+  40% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+.animate-typing-delay {
+  animation: typing-delay 0.1s steps(20, end) infinite;
+}
