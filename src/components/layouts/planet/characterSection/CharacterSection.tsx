@@ -2,6 +2,7 @@
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import CharacterCard from "../../characters/CharacterCard";
 import { useState, useRef, useEffect } from "react";
+import Image from "next/image";
 
 interface Character {
   image: string;
@@ -74,8 +75,38 @@ export default function CharacterSection({ character }: CharacterSectionProps) {
     setCurrentTranslate(-startIndex * 296);
   }, [startIndex]);
 
+  const ref = useRef(null);
+  const [isVisible, setIsVisible] = useState(false);
+  const text = "There is no character on this planet.";
+  const [typedText, setTypedText] = useState("");
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.5 }
+    );
+
+    if (ref.current) observer.observe(ref.current);
+  }, []);
+
+  useEffect(() => {
+    if (!isVisible) return;
+
+    let index = 0;
+    const interval = setInterval(() => {
+      setTypedText(text.slice(0, index));
+      index++;
+
+      if (index > text.length) clearInterval(interval);
+    }, 50);
+    return () => clearInterval(interval);
+  }, [isVisible]);
   return (
-    <section className="flex items-center gap-4">
+    <section className="flex items-center gap-4 w-full justify-center">
       <button
         className={`cursor-pointer ${
           startIndex === 0 ? "opacity-50 pointer-events-none" : ""
@@ -85,27 +116,46 @@ export default function CharacterSection({ character }: CharacterSectionProps) {
       </button>
 
       <div className="overflow-hidden max-w-[880px] w-full">
-        <div
-          ref={sliderRef}
-          className={`flex gap-2 transition-transform duration-500 ease-in-out cursor-grab select-none ${
-            isDragging ? "cursor-grabbing" : ""
-          }`}
-          style={{ transform: `translateX(${currentTranslate}px)` }}
-          onMouseDown={handleMouseDown}
-          onMouseMove={handleMouseMove}
-          onMouseUp={handleMouseUp}
-          onMouseLeave={handleMouseUp}>
-          {character.map((char, index) => (
-            <CharacterCard
-              key={index}
-              character_img={char.image}
-              species={char.species}
-              character_name={char.name}
-              status={char.status}
-              id={char.id}
+        {character.length > 0 ? (
+          <div
+            ref={sliderRef}
+            className={`flex gap-2 transition-transform duration-500 ease-in-out cursor-grab select-none ${
+              isDragging ? "cursor-grabbing" : ""
+            }`}
+            style={{ transform: `translateX(${currentTranslate}px)` }}
+            onMouseDown={handleMouseDown}
+            onMouseMove={handleMouseMove}
+            onMouseUp={handleMouseUp}
+            onMouseLeave={handleMouseUp}>
+            {character.map((char, index) => (
+              <CharacterCard
+                key={index}
+                character_img={char.image}
+                species={char.species}
+                character_name={char.name}
+                status={char.status}
+                id={char.id}
+              />
+            ))}
+          </div>
+        ) : (
+          <div className="flex  items-center  gap-4 relative  rounded-3xl  p-10 z-1 w-full  ">
+            <Image
+              alt="image"
+              src={"/svg/pikle-rick-vectorize 1.svg"}
+              width={200}
+              height={200}
             />
-          ))}
-        </div>
+            <p ref={ref} className="text-5xl font-mono">
+              {typedText}
+            </p>
+            <span className="absolute inset-0 -z-1 overflow-hidden   rounded-3xl opacity-50">
+              <span className="absolute  animate-border-spin   inset-[-1000%]  bg-[conic-gradient(from_0deg,transparent_0deg_10%,#87F54E_50%,transparent_100%)]" />
+
+              <span className="absolute inset-[4px]  bg-black rounded-3xl z-10 "></span>
+            </span>
+          </div>
+        )}
       </div>
 
       <button
