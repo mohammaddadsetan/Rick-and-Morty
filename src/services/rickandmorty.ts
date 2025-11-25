@@ -27,18 +27,37 @@ export interface LocationType {
   url: string;
   created: string;
 }
+
+type RickAndMortyApiResponse = {
+  info: {
+    count: number;
+    pages: number;
+    next: string | null;
+    prev: string | null;
+  };
+  results: CharacterType[];
+};
+
 export const getCharacters = unstable_cache(
   async (): Promise<CharacterType[]> => {
     const allCharacters: CharacterType[] = [];
     let nextUrl: string | null = `${API}/character`;
 
     while (nextUrl) {
-      const res = await fetch(nextUrl, { next: { revalidate: 3600 } });
-      if (!res.ok) throw new Error("Failed to fetch characters");
-      const data = await res.json();
+      const res = await fetch(nextUrl, {
+        next: { revalidate: 3600 },
+      });
+
+      if (!res.ok) {
+        throw new Error(`Failed to fetch characters: ${res.status}`);
+      }
+
+      const data = (await res.json()) as RickAndMortyApiResponse;
+
       allCharacters.push(...data.results);
-      nextUrl = data.info.next || null;
+      nextUrl = data.info.next;
     }
+
     return allCharacters;
   },
   ["rick-morty-characters"],
