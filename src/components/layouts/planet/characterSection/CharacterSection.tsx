@@ -110,7 +110,7 @@ export default function CharacterSection({ character }: CharacterSectionProps) {
       <button
         className={`cursor-pointer ${
           startIndex === 0 ? "opacity-50 pointer-events-none" : ""
-        } ${character.length < 3 ? "hidden" : ""}`}
+        } ${character.length <= 3 ? "hidden" : ""}`}
         onClick={() => setStartIndex((prev) => Math.max(prev - 1, 0))}>
         <ChevronLeft size={80} className="text-primary-100" />
       </button>
@@ -163,7 +163,7 @@ export default function CharacterSection({ character }: CharacterSectionProps) {
           startIndex >= character.length - 3
             ? "opacity-50 pointer-events-none"
             : ""
-        } ${character.length < 3 ? "hidden" : ""}`}
+        } ${character.length <= 3 ? "hidden" : ""}`}
         onClick={() =>
           setStartIndex((prev) => Math.min(prev + 1, character.length - 3))
         }>
