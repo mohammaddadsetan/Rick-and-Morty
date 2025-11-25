@@ -1,16 +1,16 @@
 import Image from "next/image";
 import { PlanetsImgData } from "../planets/PlanetsData";
-import { CharacterType } from "@/services/rickandmorty";
+import { getCharacterById } from "@/services/rickandmorty";
 import { notFound } from "next/navigation";
 interface CharacterPageProps {
-  characterData: CharacterType | null;
+  characterId: number;
 }
 
-export default function Character({ characterData }: CharacterPageProps) {
-  if (!characterData) {
+export default async function Character({ characterId }: CharacterPageProps) {
+  const characterData = await getCharacterById(characterId);
+  if (!characterData || !characterId) {
     notFound();
   }
-
   const planetId = characterData.location.url.split("/").pop();
   const planetImg = PlanetsImgData.find(
     (item) => `/svg/planet${planetId}.svg` === item.url

@@ -1,6 +1,7 @@
 import React from "react";
 import Character from "@/components/layouts/character/Character";
 import { getCharacterById } from "@/services/rickandmorty";
+import { notFound } from "next/navigation";
 
 type CharacterPageProps = {
   params: Promise<{ character: string }>;
@@ -8,8 +9,11 @@ type CharacterPageProps = {
 
 export default async function Page({ params }: CharacterPageProps) {
   const { character } = await params;
+  const isOnlyNumber = /^\d+$/.test(character.toString());
+  if (!isOnlyNumber) {
+    notFound();
+  }
   const characterId = parseInt(character);
-  const characterData = await getCharacterById(characterId);
 
-  return <Character characterData={characterData} />;
+  return <Character characterId={characterId} />;
 }
