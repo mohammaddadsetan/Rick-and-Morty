@@ -1,31 +1,33 @@
 "use client";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import CharacterCard from "../../characters/CharacterCard";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useContext } from "react";
 import Image from "next/image";
-
-interface Character {
-  image: string;
-  species: string;
-  name: string;
-  id: number;
-  status: "Alive" | "Dead" | "unknown";
-}
+import { CharacterContext } from "@/context/CharacterContext/CharacterContext";
+import { CharacterType } from "@/services/rickandmorty";
 
 interface CharacterSectionProps {
-  character: Character[];
+  planetNumber: string;
 }
 
-export default function CharacterSection({ character }: CharacterSectionProps) {
+export default function CharacterSection({
+  planetNumber,
+}: CharacterSectionProps) {
   const [startIndex, setStartIndex] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
   const [currentTranslate, setCurrentTranslate] = useState(0);
+  const context = useContext(CharacterContext);
+  const characters = context.characters;
+
+  const planetCharacters = characters.filter(
+    (char: CharacterType) => char.location.url === planetNumber
+  );
 
   const sliderRef = useRef<HTMLDivElement>(null);
 
   const handleMouseDown = (e: React.MouseEvent) => {
-    if (character.length >= 3) {
+    if (planetCharacters.length >= 3) {
       e.preventDefault();
       setIsDragging(true);
       setStartX(e.clientX);
@@ -46,14 +48,14 @@ export default function CharacterSection({ character }: CharacterSectionProps) {
     if (diff > 50) {
       setStartIndex((prev) => Math.max(prev - 3, 0));
     } else if (diff < -50) {
-      setStartIndex((prev) => Math.min(prev + 3, character.length - 3));
+      setStartIndex((prev) => Math.min(prev + 3, planetCharacters.length - 3));
     }
 
     setCurrentTranslate(-startIndex * 296);
   };
 
   useEffect(() => {
-    if (character.length >= 3) {
+    if (planetCharacters.length >= 3) {
       const slider = sliderRef.current;
       if (!slider) return;
 
@@ -62,14 +64,16 @@ export default function CharacterSection({ character }: CharacterSectionProps) {
         if (e.deltaY < 0) {
           setStartIndex((prev) => Math.max(prev - 1, 0));
         } else if (e.deltaY > 0) {
-          setStartIndex((prev) => Math.min(prev + 1, character.length - 3));
+          setStartIndex((prev) =>
+            Math.min(prev + 1, planetCharacters.length - 3)
+          );
         }
       };
 
       slider.addEventListener("wheel", handleWheel, { passive: false });
       return () => slider.removeEventListener("wheel", handleWheel);
     }
-  }, [character]);
+  }, [planetCharacters]);
 
   useEffect(() => {
     setCurrentTranslate(-startIndex * 296);
@@ -110,24 +114,24 @@ export default function CharacterSection({ character }: CharacterSectionProps) {
       <button
         className={`cursor-pointer ${
           startIndex === 0 ? "opacity-50 pointer-events-none" : ""
-        } ${character.length <= 3 ? "hidden" : ""}`}
+        } ${planetCharacters.length <= 3 ? "hidden" : ""}`}
         onClick={() => setStartIndex((prev) => Math.max(prev - 1, 0))}>
         <ChevronLeft size={80} className="text-primary-100" />
       </button>
 
       <div className="overflow-hidden max-w-[880px] w-full">
-        {character.length > 0 ? (
+        {planetCharacters.length > 0 ? (
           <div
             ref={sliderRef}
-            className={`flex gap-2 transition-transform duration-500 ease-in-out cursor-grab select-none ${
-              isDragging ? "cursor-grabbing" : ""
-            }`}
+            className={`flex gap-2 transition-transform duration-500 ease-in-out cursor-grab select-none items-stretch ${
+              planetCharacters.length <= 3 && "justify-center"
+            } ${isDragging ? "cursor-grabbing" : ""}`}
             style={{ transform: `translateX(${currentTranslate}px)` }}
             onMouseDown={handleMouseDown}
             onMouseMove={handleMouseMove}
             onMouseUp={handleMouseUp}
             onMouseLeave={handleMouseUp}>
-            {character.map((char, index) => (
+            {planetCharacters.map((char, index) => (
               <CharacterCard
                 key={index}
                 character_img={char.image}
@@ -160,12 +164,14 @@ export default function CharacterSection({ character }: CharacterSectionProps) {
 
       <button
         className={`cursor-pointer ${
-          startIndex >= character.length - 3
+          startIndex >= planetCharacters.length - 3
             ? "opacity-50 pointer-events-none"
             : ""
-        } ${character.length <= 3 ? "hidden" : ""}`}
+        } ${planetCharacters.length <= 3 ? "hidden" : ""}`}
         onClick={() =>
-          setStartIndex((prev) => Math.min(prev + 1, character.length - 3))
+          setStartIndex((prev) =>
+            Math.min(prev + 1, planetCharacters.length - 3)
+          )
         }>
         <ChevronRight size={80} className="text-primary-100" />
       </button>
