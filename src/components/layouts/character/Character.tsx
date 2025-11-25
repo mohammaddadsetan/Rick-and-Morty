@@ -19,13 +19,15 @@ export default function Character({ characterData }: CharacterPageProps) {
   return (
     <section className="w-full flex items-stretch justify-center mt-20 mb-20">
       <div className="bg-white w-full max-w-[1000px] rounded-4xl p-10 flex gap-10 relative">
-        <Image
-          width={150}
-          height={150}
-          src={planetImg || `/svg/unknown_planet.png`}
-          alt="Image"
-          className="absolute -right-15 -top-15 rotate"
-        />
+        <div className="absolute -right-15 -top-15 rotate">
+          <Image
+            width={150}
+            height={150}
+            src={planetImg || `/svg/unknown_planet.png`}
+            alt="Image"
+          />
+          <div className="absolute inset-0  z-1 rounded-full shadow-[inset_0_0_10px_5px_rgba(0,0,0,0.6)] pointer-events-none"></div>
+        </div>
 
         <div className="border-2 border-black rounded-3xl overflow-hidden w-[500px] relative">
           <Image
