@@ -26,7 +26,7 @@ export default function CharacterCard({
   const color =
     status === "Alive" ? "#87F54E" : status === "Dead" ? "#fb2c36" : "#ffd230";
   return (
-    <div className="w-full min-w-72 max-w-72 overflow-hidden rounded-3xl ">
+    <div className="w-full min-w-72 max-w-72  overflow-hidden rounded-3xl">
       <div className="w-full h-72 relative">
         <button
           onClick={() => toggleFavorite?.(id)}
@@ -43,7 +43,7 @@ export default function CharacterCard({
           Go
         </Link>
       </div>
-      <div className="text-[#4d4d4d] bg-[#87F54E] px-4 py-4 flex flex-col pb-0 gap-3">
+      <div className="text-[#4d4d4d] bg-[#87F54E] px-4 py-4 flex flex-col pb-0 gap-3 h-50 justify-between">
         <div>
           <p className="text-lg font-bold">Name:</p>
           <p>{character_name}</p>
@@ -51,7 +51,7 @@ export default function CharacterCard({
           <p>{species}</p>
         </div>
         <div
-          className="w-full max-w-2/4 text-lg self-center flex items-center justify-center gap-2 py-2 rounded-t-3xl bg-neutral-800"
+          className="w-full h-full max-h-10  max-w-2/4 text-lg self-center  shrink-0  flex items-center justify-center gap-2 py-2 rounded-t-3xl bg-neutral-800"
           style={{ color: color }}>
           <div
             className="rounded-full size-2.5 shrink-0"
