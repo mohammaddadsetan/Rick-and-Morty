@@ -27,12 +27,19 @@ export interface LocationType {
   url: string;
   created: string;
 }
-
 export const getCharacters = unstable_cache(
   async (): Promise<CharacterType[]> => {
-    const res = await fetch(`${API}/character`);
-    const data = await res.json();
-    return data.results || [];
+    const allCharacters: CharacterType[] = [];
+    let nextUrl: string | null = `${API}/character`;
+
+    while (nextUrl) {
+      const res = await fetch(nextUrl, { next: { revalidate: 3600 } });
+      if (!res.ok) throw new Error("Failed to fetch characters");
+      const data = await res.json();
+      allCharacters.push(...data.results);
+      nextUrl = data.info.next || null;
+    }
+    return allCharacters;
   },
   ["rick-morty-characters"],
   {
