@@ -6,6 +6,7 @@ import Footer from "@/components/shared/footer/Footer";
 import FavoriteProvider from "@/context/FavoriteContext";
 import Image from "next/image";
 import MainLoading from "@/components/layouts/loading/MainLoading";
+import CharacterDataWrapper from "@/context/CharacterContext/CharacterDataWrapper";
 
 export const metadata: Metadata = {
   title: "Rick and Morty",
@@ -33,7 +34,9 @@ export default function RootLayout({
 
         <FavoriteProvider>
           <Header />
-          <main className="flex items-center justify-center">{children}</main>
+          <CharacterDataWrapper>
+            <main className="flex items-center justify-center">{children}</main>
+          </CharacterDataWrapper>
           <Footer />
         </FavoriteProvider>
       </body>
