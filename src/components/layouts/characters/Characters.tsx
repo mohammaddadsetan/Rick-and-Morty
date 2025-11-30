@@ -7,6 +7,7 @@ import Input from "@/components/ui/Input";
 import { usePathname } from "next/navigation";
 import { FavoriteContext } from "@/context/FavoriteContext";
 import { CharacterType } from "@/services/rickandmorty";
+import Pagination from "@/components/ui/Pagination";
 const statusOption = [
   { value: "Alive", label: "Alive" },
   { value: "Dead", label: "Dead" },
@@ -19,16 +20,19 @@ const speciesOption = [
 ];
 
 interface characterProps {
-  character: CharacterType[];
+  character: CharacterType[] | null;
+  page?: number;
+  currentPage?: number;
 }
 
-function Characters({ character }: characterProps) {
+function Characters({ character, page = 1, currentPage = 1 }: characterProps) {
   const [moreCharacters, setMoreCharacters] = useState(false);
   const [filteredStatus, setFilteredStatus] = useState<string>();
   const [filteredSpecies, setFilteredSpecies] = useState<string>();
   const [filteredName, setFilteredName] = useState<string>();
   const pathname = usePathname();
   const ctx = useContext(FavoriteContext);
+  if (!character) return null;
   if (!ctx) return null;
   const { favorites } = ctx;
   const characterData: CharacterType[] =
@@ -61,6 +65,7 @@ function Characters({ character }: characterProps) {
   const handleNameChange = (value: string) => {
     setFilteredName(value);
   };
+
   return (
     <section className="w-full flex flex-col items-center gap-10">
       {characterData.length !== 0 ? (
@@ -106,6 +111,9 @@ function Characters({ character }: characterProps) {
               size={90}
               onClick={() => setMoreCharacters(true)}
             />
+          )}
+          {moreCharacters && (
+            <Pagination page_lenght={page} current_page={currentPage} />
           )}
         </>
       ) : (

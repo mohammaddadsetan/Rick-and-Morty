@@ -1,8 +1,10 @@
-import CharactersConteiner from "@/components/layouts/characters/CharactersConteiner";
+import CharactersContainer from "@/components/layouts/characters/CharactersConteiner";
 import React from "react";
 
-function page() {
-  return <CharactersConteiner />;
+export default function Page({
+  searchParams,
+}: {
+  searchParams: { [key: string]: string | string[] | undefined };
+}) {
+  return <CharactersContainer searchParams={searchParams} />;
 }
-
-export default page;

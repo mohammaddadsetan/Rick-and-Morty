@@ -67,6 +67,22 @@ export const getCharacters = unstable_cache(
   }
 );
 
+export const getCharactersByPage = async (pageNumber?: number) => {
+  const page = pageNumber && pageNumber >= 1 ? pageNumber : 1;
+
+  try {
+    const res = await fetch(
+      `https://rickandmortyapi.com/api/character?page=${page}`
+    );
+
+    if (!res.ok) return null;
+    return await res.json();
+  } catch (error) {
+    console.error("API Error:", error);
+    return null;
+  }
+};
+
 export const getLocations = unstable_cache(
   async (): Promise<LocationType[]> => {
     const res = await fetch(`${API}/location`);
