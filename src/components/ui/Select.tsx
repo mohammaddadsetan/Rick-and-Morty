@@ -10,6 +10,7 @@ interface selectProps {
   fullSelect?: boolean;
   className?: string;
   onChange?: (value: string) => void;
+  defaultValue?: string;
 }
 export default function Select({
   options,
@@ -17,6 +18,7 @@ export default function Select({
   fullSelect,
   className,
   onChange,
+  defaultValue,
 }: selectProps) {
   const optionsValues: optionProps[] = options;
   const buttonRef = useRef<HTMLButtonElement | null>(null);
@@ -29,7 +31,9 @@ export default function Select({
   }, []);
 
   const [isOpen, setIsOpen] = React.useState(false);
-  const [selectedOption, setSelectedOption] = React.useState(label);
+  const [selectedOption, setSelectedOption] = React.useState(
+    defaultValue ? defaultValue : label
+  );
   const [dropHeight, setDropHeight] = React.useState<number | undefined>();
   return (
     <div
