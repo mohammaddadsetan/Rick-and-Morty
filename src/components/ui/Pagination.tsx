@@ -1,4 +1,4 @@
-import { ChevronLeft, ChevronRight} from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 
@@ -39,7 +39,7 @@ export default function Pagination({
       {[...Array(page_lenght)]
         .slice(startIndex, Index_lenght)
         .map((_, index) => {
-          const pageNumber = startIndex + index + 1;
+          const pageNumber = page_lenght == 1 ? 1 : startIndex + index + 1;
           return (
             <Link
               key={pageNumber}
