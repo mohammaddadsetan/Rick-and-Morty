@@ -4,13 +4,15 @@ interface inputProps {
   placeholder?: string;
   onChange?: (value: string) => void;
   className?: string;
+  defaultValue?: string;
 }
 export default function Input({
   placeholder,
   onChange,
   className,
+  defaultValue,
 }: inputProps) {
-  const [value, setValue] = useState<string>("");
+  const [value, setValue] = useState<string>(defaultValue ?? "");
   return (
     <div
       className={`bg-white text-black  px-2 py-2 rounded-lg relative ${className}`}>
