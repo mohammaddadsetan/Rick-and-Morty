@@ -2,22 +2,11 @@
 import CharacterCard from "@/components/layouts/characters/CharacterCard";
 import React, { useContext, useState } from "react";
 import { ChevronDown } from "lucide-react";
-import Select from "@/components/ui/Select";
-import Input from "@/components/ui/Input";
 import { usePathname } from "next/navigation";
 import { FavoriteContext } from "@/context/FavoriteContext";
 import { CharacterType } from "@/services/rickandmorty";
 import Pagination from "@/components/ui/Pagination";
-const statusOption = [
-  { value: "Alive", label: "Alive" },
-  { value: "Dead", label: "Dead" },
-  { value: "unknown", label: "unknown" },
-];
-
-const speciesOption = [
-  { value: "Alien", label: "Alien" },
-  { value: "Human", label: "Human" },
-];
+import CharactersFilter from "./CharactersFilter";
 
 interface characterProps {
   character: CharacterType[] | null;
@@ -27,9 +16,6 @@ interface characterProps {
 
 function Characters({ character, page = 1, currentPage = 1 }: characterProps) {
   const [moreCharacters, setMoreCharacters] = useState(false);
-  const [filteredStatus, setFilteredStatus] = useState<string>();
-  const [filteredSpecies, setFilteredSpecies] = useState<string>();
-  const [filteredName, setFilteredName] = useState<string>();
   const pathname = usePathname();
   const ctx = useContext(FavoriteContext);
   if (!character) return null;
@@ -39,59 +25,16 @@ function Characters({ character, page = 1, currentPage = 1 }: characterProps) {
     pathname !== "/favorites"
       ? character
       : character.filter((item) => favorites.includes(item.id));
-  const filteredCharacter = characterData.filter((item) => {
-    const matchStatus = filteredStatus ? item.status === filteredStatus : true;
-    const matchName = filteredName
-      ? item.name.toLowerCase().startsWith(filteredName.toLowerCase())
-      : true;
-    const matchSpecies = filteredSpecies
-      ? item.species === filteredSpecies
-      : true;
-
-    return matchStatus && matchSpecies && matchName;
-  });
 
   const visibleCharacters = moreCharacters
-    ? filteredCharacter
-    : filteredCharacter.slice(0, 8);
-
-  const handleStatusChange = (value: string) => {
-    setFilteredStatus(value);
-  };
-
-  const handleSpeciesChange = (value: string) => {
-    setFilteredSpecies(value);
-  };
-  const handleNameChange = (value: string) => {
-    setFilteredName(value);
-  };
+    ? characterData
+    : characterData.slice(0, 8);
 
   return (
     <section className="w-full flex flex-col items-center gap-10">
       {characterData.length !== 0 ? (
         <>
-          <div className="flex items-center justify-center gap-5 ">
-            <Input
-              placeholder="search by name"
-              onChange={handleNameChange}
-              className="w-[700px]"
-            />
-            <Select
-              options={statusOption}
-              label="status"
-              onChange={handleStatusChange}
-              fullSelect
-              className="max-w-[200px]"
-            />
-            <Select
-              options={speciesOption}
-              label="species"
-              onChange={handleSpeciesChange}
-              fullSelect
-              className="max-w-[200px]"
-            />
-          </div>
-
+          <CharactersFilter />
           <div className="flex flex-wrap justify-center items-center  w-auto mx-auto my-10 gap-10 ">
             {visibleCharacters.map((item, index) => (
               <CharacterCard
@@ -105,7 +48,7 @@ function Characters({ character, page = 1, currentPage = 1 }: characterProps) {
             ))}
           </div>
 
-          {!moreCharacters && filteredCharacter.length > 8 && (
+          {!moreCharacters && characterData.length > 8 && (
             <ChevronDown
               className="text-primary-100 cursor-pointer animate-bounce"
               size={90}

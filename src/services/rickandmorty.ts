@@ -67,18 +67,29 @@ export const getCharacters = unstable_cache(
   }
 );
 
-export const getCharactersByPage = async (pageNumber?: number) => {
-  const page = pageNumber && pageNumber >= 1 ? pageNumber : 1;
+export const getCharactersByFilter = async (filters: {
+  status?: string;
+  species?: string;
+  name?: string;
+  page?: number;
+}) => {
+  const { status = "", species = "", name = "", page = 1 } = filters;
 
   try {
-    const res = await fetch(
-      `https://rickandmortyapi.com/api/character?page=${page}`
-    );
+    const params = new URLSearchParams();
+    if (status) params.append("status", status);
+    if (species) params.append("species", species);
+    if (name) params.append("name", name);
+    if (page) params.append("page", page.toString());
 
-    if (!res.ok) return null;
-    return await res.json();
+    const res = await fetch(`${API}/character?${params.toString()}`);
+    if (!res.ok) {
+      return null;
+    }
+    const data = await res.json();
+    return data;
   } catch (error) {
-    console.error("API Error:", error);
+    console.error("Error fetching characters by filter:", error);
     return null;
   }
 };
