@@ -1,5 +1,7 @@
+"use client";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Link from "next/link";
+import { usePathname, useSearchParams } from "next/navigation";
 import React from "react";
 
 interface PaginationProps {
@@ -11,8 +13,18 @@ export default function Pagination({
   page_lenght,
   current_page,
 }: PaginationProps) {
-  const createHref = (page: number) =>
-    page === 1 ? "/characters" : `/characters?page=${page}`;
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const createHref = (page: number) => {
+    const params = new URLSearchParams(searchParams.toString());
+    if (page == 1) {
+      params.delete("page");
+    } else {
+      params.set("page", page.toString());
+    }
+
+    return `${pathname}?${params.toString()}`;
+  };
   let startIndex = current_page == 1 ? 0 : current_page - 2;
   const Index_lenght = startIndex + 4;
   const active = "bg-primary-100 text-black";
