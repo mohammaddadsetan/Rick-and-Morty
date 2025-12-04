@@ -25,12 +25,10 @@ export default function Pagination({
 
     return `${pathname}?${params.toString()}`;
   };
-  let startIndex = current_page == 1 ? 0 : current_page - 2;
+  const startIndex = current_page == 1 ? 0 : current_page - 2;
   const Index_lenght = startIndex + 4;
   const active = "bg-primary-100 text-black";
-  if (page_lenght - startIndex < 4) {
-    startIndex = page_lenght - 4;
-  }
+
   return (
     <div className="flex items-center gap-5 mb-10">
       {current_page !== 1 && (
