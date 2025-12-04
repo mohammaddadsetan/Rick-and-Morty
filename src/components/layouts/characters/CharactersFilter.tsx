@@ -14,6 +14,8 @@ export default function CharactersFilter() {
   const speciesOption = [
     { value: "alien", label: "Alien" },
     { value: "human", label: "Human" },
+    { value: "robot", label: "Robot" },
+    { value: "animal", label: "Animal" },
   ];
   const router = useRouter();
   const pathname = usePathname();
@@ -28,13 +30,19 @@ export default function CharactersFilter() {
     }
     router.push(`${pathname}?${params.toString()}`);
   };
+  let timer: NodeJS.Timeout;
   return (
     <div className="flex items-center justify-center gap-5 ">
       <Input
         defaultValue={searchParams.get("name") || ""}
         placeholder="search by name"
-        onChange={(value) => updatedFilter("name", value)}
-        className="w-[700px]"
+        onChange={(value) => {
+          clearTimeout(timer);
+          timer = setTimeout(() => {
+            updatedFilter("name", value);
+          }, 1000);
+        }}
+        className="w-[600px]"
       />
       <Select
         defaultValue={searchParams.get("status") || ""}
