@@ -6,7 +6,6 @@ import { usePathname } from "next/navigation";
 import { FavoriteContext } from "@/context/FavoriteContext";
 import { CharacterType } from "@/services/rickandmorty";
 import Pagination from "@/components/ui/Pagination";
-import CharactersFilter from "./CharactersFilter";
 
 interface characterProps {
   character: CharacterType[] | null;
@@ -32,37 +31,28 @@ function Characters({ character, page = 1, currentPage = 1 }: characterProps) {
 
   return (
     <section className="w-full flex flex-col items-center gap-10">
-      {characterData.length !== 0 ? (
-        <>
-          <CharactersFilter />
-          <div className="flex flex-wrap justify-center items-center  w-auto mx-auto my-10 gap-10 ">
-            {visibleCharacters.map((item, index) => (
-              <CharacterCard
-                key={index}
-                character_img={item.image}
-                character_name={item.name}
-                species={item.species}
-                status={item.status}
-                id={item.id}
-              />
-            ))}
-          </div>
+      <div className="flex flex-wrap justify-center items-center  w-auto mx-auto my-10 gap-10 ">
+        {visibleCharacters.map((item, index) => (
+          <CharacterCard
+            key={index}
+            character_img={item.image}
+            character_name={item.name}
+            species={item.species}
+            status={item.status}
+            id={item.id}
+          />
+        ))}
+      </div>
 
-          {!moreCharacters && characterData.length > 8 && (
-            <ChevronDown
-              className="text-primary-100 cursor-pointer animate-bounce"
-              size={90}
-              onClick={() => setMoreCharacters(true)}
-            />
-          )}
-          {moreCharacters && (
-            <Pagination page_lenght={page} current_page={currentPage} />
-          )}
-        </>
-      ) : (
-        <div>
-          <h1>es gibt keine character</h1>
-        </div>
+      {!moreCharacters && characterData.length > 8 && (
+        <ChevronDown
+          className="text-primary-100 cursor-pointer animate-bounce"
+          size={90}
+          onClick={() => setMoreCharacters(true)}
+        />
+      )}
+      {moreCharacters && (
+        <Pagination page_lenght={page} current_page={currentPage} />
       )}
     </section>
   );
