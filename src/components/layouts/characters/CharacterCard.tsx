@@ -1,4 +1,4 @@
-import { Star } from "lucide-react";
+import { Heart, Star } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useContext } from "react";
@@ -31,9 +31,9 @@ export default function CharacterCard({
         <button
           onClick={() => toggleFavorite?.(id)}
           className="bg-neutral-800 cursor-pointer   rounded-full size-10 flex items-center justify-center absolute top-0 left-0 overflow-hidden m-1 z-10">
-          <Star
-            color={`${favorites.includes(id) ? "#ffd900" : "white"}`}
-            fill={`${favorites.includes(id) ? "#ffd900" : ""}`}
+          <Heart
+            color={`${favorites.includes(id) ? "#fb2c36" : "white"}`}
+            fill={`${favorites.includes(id) ? "#fb2c36" : ""}`}
           />
         </button>
         <Image alt="character" src={character_img} objectFit="cover" fill />
