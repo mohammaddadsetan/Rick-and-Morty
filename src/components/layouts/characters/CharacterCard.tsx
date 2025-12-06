@@ -26,7 +26,7 @@ export default function CharacterCard({
   const color =
     status === "Alive" ? "#87F54E" : status === "Dead" ? "#fb2c36" : "#ffd230";
   return (
-    <div className="w-full min-w-72 max-w-72  overflow-hidden rounded-3xl">
+    <div className=" w-72 shrink-0  overflow-hidden rounded-3xl">
       <div className="w-full h-72 relative">
         <button
           onClick={() => toggleFavorite?.(id)}
