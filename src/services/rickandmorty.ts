@@ -17,6 +17,12 @@ export interface CharacterType {
   url: string;
   created: string;
 }
+export interface EpisodeType {
+  name: string;
+  air_date: string;
+  episode: string;
+  characters: string[];
+}
 
 export interface LocationType {
   id: number;
@@ -36,6 +42,15 @@ type RickAndMortyApiResponse = {
     prev: string | null;
   };
   results: CharacterType[];
+};
+type RickAndMortyEpisodeApiResponse = {
+  info: {
+    count: number;
+    pages: number;
+    next: string | null;
+    prev: string | null;
+  };
+  results: EpisodeType[];
 };
 
 export const getCharacters = unstable_cache(
@@ -64,6 +79,32 @@ export const getCharacters = unstable_cache(
   {
     revalidate: ONE_MONTH_IN_SECONDS,
     tags: ["characters"],
+  }
+);
+export const getAllEpisodes = unstable_cache(
+  async (): Promise<EpisodeType[]> => {
+    const allEpisodes: EpisodeType[] = [];
+    let nextUrl: string | null = `${API}/episode`;
+
+    while (nextUrl) {
+      const res = await fetch(nextUrl);
+
+      if (!res.ok) {
+        throw new Error(`Failed to fetch episodes: ${res.status}`);
+      }
+
+      const data = (await res.json()) as RickAndMortyEpisodeApiResponse;
+
+      allEpisodes.push(...data.results);
+      nextUrl = data.info.next;
+    }
+
+    return allEpisodes;
+  },
+  ["rick-morty-episodes"],
+  {
+    revalidate: ONE_MONTH_IN_SECONDS,
+    tags: ["episodes"],
   }
 );
 
