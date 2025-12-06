@@ -2,6 +2,7 @@ import Image from "next/image";
 import { PlanetsImgData } from "../planets/PlanetsData";
 import { getCharacterById } from "@/services/rickandmorty";
 import { notFound } from "next/navigation";
+import Episodes from "./episodes/Episodes";
 interface CharacterPageProps {
   characterId: number;
 }
@@ -17,7 +18,7 @@ export default async function Character({ characterId }: CharacterPageProps) {
   )?.url;
 
   return (
-    <section className="w-full flex items-stretch justify-center mt-20 mb-20">
+    <section className="w-full flex items-center justify-center mt-20 mb-20 flex-col gap-10">
       <div className="bg-white w-full max-w-[1000px] rounded-4xl p-10 flex gap-10 relative">
         <div className="absolute -right-15 -top-15 rotate">
           <Image
@@ -44,7 +45,7 @@ export default async function Character({ characterId }: CharacterPageProps) {
               {characterData.name}
             </h1>
             <hr className="w-1/2" />
-            <div className="flex flex-col gap-1 font-mono">
+            <div className="flex flex-col gap-1 font-mono *:font-extrabold">
               <p>
                 Status:{" "}
                 <span className="font-extralight">
@@ -97,6 +98,7 @@ export default async function Character({ characterId }: CharacterPageProps) {
           </div>
         </div>
       </div>
+      <Episodes characterNumber={characterId} />
     </section>
   );
 }
