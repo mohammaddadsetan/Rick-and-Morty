@@ -11,6 +11,7 @@ type MultiNavLinkProps = {
   activeClassName?: string;
   countBox?: number;
   countNumber?: number;
+  activeMode?: boolean;
 };
 
 export default function MultiNavButton({
@@ -21,6 +22,7 @@ export default function MultiNavButton({
   countBox,
   countNumber,
   children,
+  activeMode = true,
 }: MultiNavLinkProps) {
   const pathname = usePathname();
 
@@ -31,9 +33,11 @@ export default function MultiNavButton({
       }`}>
       {data.map((item, index) => {
         const isActive =
-          (item.href === "/" && pathname === "/") ||
-          (item.href !== "/" &&
-            (pathname === item.href || pathname.startsWith(item.href + "/")));
+          activeMode &&
+          ((item.href === "/" && pathname === "/") ||
+            (item.href !== "/" &&
+              (pathname === item.href ||
+                pathname.startsWith(item.href + "/"))));
         return (
           <Link
             key={index}
