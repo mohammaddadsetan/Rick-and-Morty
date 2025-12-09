@@ -15,8 +15,8 @@ export default function Footer() {
       <MultiNavButton
         data={HeaderLinks}
         activeMode={false}
-        linkClassName="hover:text-primary-100 text-sm sm:text-base font-semibold"
-        containerClassName="md:gap-0  justify-center w-full justify-start max-md:grid max-md:grid-cols-2 max-sm:grid-cols-1 gap-y-2 gap-x-8 order-3"
+        linkClassName="hover:text-primary-100 text-sm sm:text-base md:text-lg font-semibold"
+        containerClassName="lg:gap-3 md:gap-0 w-full justify-start max-md:grid max-md:grid-cols-2 max-sm:grid-cols-1 gap-y-2 gap-x-15 order-3"
       />
       <Link
         target="blank"
