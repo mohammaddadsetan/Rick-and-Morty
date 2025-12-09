@@ -6,7 +6,7 @@ import Image from "next/image";
 export default async function CharactersContainer({
   searchParams,
 }: {
-  searchParams: { [key: string]: string | string[] | undefined };
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }) {
   const SearchParams = await searchParams;
   const page = Number(SearchParams.page) || 1;

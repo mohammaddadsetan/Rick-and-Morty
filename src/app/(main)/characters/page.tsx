@@ -4,7 +4,7 @@ import React from "react";
 export default function Page({
   searchParams,
 }: {
-  searchParams: { [key: string]: string | string[] | undefined };
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }) {
   return <CharactersContainer searchParams={searchParams} />;
 }
