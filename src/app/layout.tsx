@@ -20,7 +20,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="relative h-screen overflow-x-hidden grid grid-rows-[150px_1fr_100px] bg-black">
+      <body className="relative h-screen overflow-x-hidden flex flex-col justify-between bg-black">
         <MainLoading />
         <div className="fixed inset-0 -z-100">
           <Image
@@ -35,7 +35,9 @@ export default function RootLayout({
         <FavoriteProvider>
           <Header />
           <CharacterDataWrapper>
-            <main className="flex items-center justify-center">{children}</main>
+            <main className="flex items-center justify-center px-10">
+              {children}
+            </main>
           </CharacterDataWrapper>
           <Footer />
         </FavoriteProvider>

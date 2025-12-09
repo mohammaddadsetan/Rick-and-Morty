@@ -10,10 +10,9 @@ export default function Page() {
   }, []);
 
   return (
-    <div className="w-full flex justify-center p-2">
+    <div className="w-full flex justify-center relative h-70 ">
       <Image
-        width={418}
-        height={380}
+        fill
         src="/svg/rick-car.svg"
         alt="car"
         className={`h-full shadow-lime-50 ${animateClass}`}
