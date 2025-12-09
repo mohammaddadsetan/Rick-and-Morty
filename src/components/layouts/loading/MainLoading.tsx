@@ -28,7 +28,7 @@ export default function MainLoading() {
       setLoading(false);
       return;
     } else {
-      setVisited(false);
+      setVisited(true);
     }
     const container = containerRef.current;
     if (!container) return;
@@ -117,23 +117,23 @@ export default function MainLoading() {
             </div>
           ) : (
             <>
-              <div className="flex flex-col items-center justify-center hover:scale-105 transition-transform duration-300">
+              <div className="flex flex-col size-full relative items-center  hover:scale-105 transition-transform duration-300">
                 <Image
                   src={"svg/rick and morthy_fuck_finger.svg"}
                   width={300}
                   height={300}
                   alt="image"
-                  className="-mb-8"
+                  className="-mb-8 max-sm:w-120 max-sm:-mb-14"
                   priority={true}
                   quality={10}
                 />
                 <button
-                  className="text-5xl border-2 rounded-[40px] w-full py-4 flex items-center justify-center pb-6 hover:bg-primary-100 hover:text-black text-white transition-all duration-300"
+                  className="text-5xl border-4  rounded-[40px] w-full  max-sm:size-80  py-4 pb-6 flex items-center justify-center   hover:bg-primary-100 hover:text-black text-white transition-all duration-300"
                   onClick={handleStart}>
                   Get Start
                 </button>
               </div>
-              <div className="absolute -inset-20 pointer-events-none">
+              <div className="absolute -inset-30 sm:-inset-40 pointer-events-none">
                 <div className="absolute inset-0 rounded-full border-4 border-cyan-500/40 animate-ping" />
                 <div className="absolute inset-0 rounded-full border-2 border-purple-500/50 animate-spin-slow" />
                 <div className="absolute inset-0 rounded-full border border-emerald-500/30 animate-spin-fast [animation-direction:reverse]" />
@@ -149,7 +149,7 @@ export default function MainLoading() {
         {Array.from({ length: LINES_COUNT }).map((_, i) => (
           <div
             key={i}
-            className="absolute w-1 h-1 bg-white rounded-full shadow-md opacity-35"
+            className="absolute size-2 sm:size-1  bg-white rounded-full shadow-md opacity-35"
           />
         ))}
       </div>
