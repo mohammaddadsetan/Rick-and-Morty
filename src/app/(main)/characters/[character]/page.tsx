@@ -1,6 +1,5 @@
 import React from "react";
 import Character from "@/components/layouts/character/Character";
-import { getCharacterById } from "@/services/rickandmorty";
 import { notFound } from "next/navigation";
 
 type CharacterPageProps = {
