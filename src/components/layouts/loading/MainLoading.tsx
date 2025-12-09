@@ -28,7 +28,7 @@ export default function MainLoading() {
       setLoading(false);
       return;
     } else {
-      setVisited(true);
+      setVisited(false);
     }
     const container = containerRef.current;
     if (!container) return;
