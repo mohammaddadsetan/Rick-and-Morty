@@ -37,7 +37,7 @@ export default function Header() {
     </header>
   ) : (
     <>
-      <header className="flex items-center justify-between px-10 py-5 gap-1 ">
+      <header className="flex items-center justify-between px-10 py-5 gap-5 lg:gap-10 ">
         <Image
           alt="logo"
           src={`/svg/rick&morty_black.svg`}
@@ -52,7 +52,7 @@ export default function Header() {
             src={`/svg/rick-and-morty-green-logo.svg`}
             width={460}
             height={100}
-            className="h-full w-auto"
+            className="h-full w-60 md:w-100"
           />
         </div>
 
