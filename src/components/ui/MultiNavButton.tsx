@@ -12,6 +12,7 @@ type MultiNavLinkProps = {
   countBox?: number;
   countNumber?: number;
   activeMode?: boolean;
+  onclock?: () => void;
 };
 
 export default function MultiNavButton({
@@ -23,6 +24,7 @@ export default function MultiNavButton({
   countNumber,
   children,
   activeMode = true,
+  onclock,
 }: MultiNavLinkProps) {
   const pathname = usePathname();
 
@@ -40,6 +42,7 @@ export default function MultiNavButton({
                 pathname.startsWith(item.href + "/"))));
         return (
           <Link
+            onClick={onclock}
             key={index}
             href={item.href}
             className={`

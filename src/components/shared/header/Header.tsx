@@ -3,9 +3,25 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { HeaderLinks } from "./Data";
 import MultiNavButton from "@/components/ui/MultiNavButton";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { FavoriteContext } from "@/context/FavoriteContext";
+import { X } from "lucide-react";
 export default function Header() {
+  const [isOpen, setIsOpen] = useState(false);
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+      document.documentElement.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
+    }
+
+    return () => {
+      document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
+    };
+  }, [isOpen]);
   const pathname = usePathname();
   const favoritesContext = useContext(FavoriteContext);
   if (!favoritesContext) return null;
@@ -20,23 +36,62 @@ export default function Header() {
       />
     </header>
   ) : (
-    <header>
-      <div className="flex items-center justify-between px-10 py-5 h-full">
+    <>
+      <header className="flex items-center justify-between px-10 py-5 gap-1 ">
         <Image
-          alt=""
-          src={"/svg/rick-and-morty-green-logo.svg"}
-          width={460}
-          height={100}
-          className="h-full w-auto"
+          alt="logo"
+          src={`/svg/rick&morty_black.svg`}
+          width={50}
+          height={50}
+          className="h-full w-auto bg-white rounded-[10px] p-1 block sm:hidden"
         />
 
+        <div className="hidden sm:block">
+          <Image
+            alt=""
+            src={`/svg/rick-and-morty-green-logo.svg`}
+            width={460}
+            height={100}
+            className="h-full w-auto"
+          />
+        </div>
+
+        <button
+          className="cursor-pointer z-101"
+          onClick={() => {
+            setIsOpen(!isOpen);
+          }}>
+          {isOpen ? (
+            <X size={50} />
+          ) : (
+            <Image
+              alt="menu"
+              src={"/svg/burger-menu.svg"}
+              height={50}
+              width={50}
+              className="block md:hidden"
+            />
+          )}
+        </button>
         <MultiNavButton
           data={HeaderLinks}
-          containerClassName="text-primary-100 gap-10 text-lg"
+          containerClassName="text-primary-100 gap-0  lg:gap-10 text-lg font-mono hidden md:flex"
           countBox={4}
           countNumber={favorites.length}
         />
-      </div>
-    </header>
+      </header>
+
+      <aside
+        className="bg-[#000000d7] fixed top-0 size-full gap-5 transition-all duration-400 z-100 flex items-center justify-center pointer-events-auto"
+        style={{ right: isOpen ? "0" : "-100%" }}>
+        <MultiNavButton
+          data={HeaderLinks}
+          containerClassName="text-primary-100  gap-20 flex-col text-2xl font-mono "
+          countBox={4}
+          countNumber={favorites.length}
+          onclock={() => setIsOpen(false)}
+        />
+      </aside>
+    </>
   );
 }
