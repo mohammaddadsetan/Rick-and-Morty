@@ -35,7 +35,7 @@ export default function RootLayout({
         <FavoriteProvider>
           <Header />
           <CharacterDataWrapper>
-            <main className="flex items-center justify-center px-10">
+            <main className="flex items-center justify-center ">
               {children}
             </main>
           </CharacterDataWrapper>

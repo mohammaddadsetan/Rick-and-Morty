@@ -8,12 +8,12 @@ export default async function PlanetsContainer() {
 
   return (
     <section className="w-full h-full p-5">
-      <div className="w-full h-full grid grid-cols-5 grid-rows-3  grid-flow-col gap-5 overflow-hidden p-10 shrink-0">
+      <div className=" h-full flex flex-wrap justify-center gap-5 overflow-hidden p-10 shrink-0 w-full  mx-auto">
         {PlanetsImgData.map((img, index) => {
           const justifyClass =
-            index % 2 === 0
-              ? " mb-30 justify-self-center self-end"
-              : " justify-self-end self-end mt-30";
+            index % 3 === 0
+              ? " sm:mb-20 lg:mb-30 self-start ml-10 "
+              : " self-end mr-10 sm:mr-10  ";
 
           const planetName = locations[index]?.name || "unknown";
 
