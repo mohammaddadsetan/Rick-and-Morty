@@ -8,10 +8,10 @@ export default function Footer() {
       <Link
         href={"/"}
         className="relative size-20 shrink-0 order-1 max-xsm:hidden">
-        <Image fill alt="logo" src={"svg/rickandmorty-logo.svg"} />
+        <Image fill alt="logo" src={"/svg/rickandmorty-logo.svg"} />
       </Link>
 
-      <div className="w-[1px] bg-neutral-50 h-full order-2"></div>
+      <div className="w-px bg-neutral-50 h-full order-2"></div>
       <MultiNavButton
         data={HeaderLinks}
         activeMode={false}
