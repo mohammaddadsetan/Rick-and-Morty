@@ -24,6 +24,15 @@ input {
   --breakpoint-2xl: 1920px;
 }
 
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 @keyframes zoomIn {
   from {
     transform: scale(0.2) translateY(-50px);
