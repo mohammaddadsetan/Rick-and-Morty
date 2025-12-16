@@ -30,7 +30,7 @@ export default async function PlanetContainer({
     (img) => img.url === `/svg/planet${planetId}.svg`
   );
   return (
-    <section className="text-neutral-50 flex flex-col items-center pb-20 w-full">
+    <section className="text-neutral-50 flex flex-col items-center pb-20 w-full gap-20">
       <PlanetInfoSection
         planetData={PlanetData}
         planetImg={planetImg?.url || "/svg/planet1.svg"}
