@@ -10,18 +10,18 @@ export default function PlanetInfoSection({
   planetData,
 }: planetDataProps) {
   return (
-    <div className="grid grid-cols-[45%_55%] w-full">
-      <div className="overflow-hidden">
+    <div className="flex w-full justify-center items-center max-sm:flex-col">
+      <div className="overflow-hidden p-10">
         <Image
           alt="planet image"
           src={planetImg ? planetImg : "/svg/planet1.svg"}
-          width={700}
-          height={700}
-          className="-ml-40 rotate drop-shadow-[0px_0px_20px] drop-shadow-amber-100 p-10"
+          width={1000}
+          height={1000}
+          className="sm:-ml-[30%] pointer-events-none  -z-1 max-w-200 w-full  rotate drop-shadow-[0px_0px_20px] drop-shadow-amber-100 sm:absolute sm:opacity-50 lg:opacity-70 top-0 left-0"
         />
       </div>
 
-      <ul className="font-extrabold text-2xl space-y-3 drop-shadow-[0px_0px_2px] drop-shadow-[#87F54E] mt-20">
+      <ul className="font-extrabold text-2xl space-y-3 drop-shadow-[0px_0px_2px] drop-shadow-[#87F54E] mt-5">
         <li>
           Planet:
           <ul>
