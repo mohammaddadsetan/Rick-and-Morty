@@ -27,9 +27,10 @@ export default function Header() {
   if (!favoritesContext) return null;
   const { favorites } = favoritesContext;
   return pathname === "/" ? (
-    <header className=" py-5 relative w-full h-full max-h-40">
+    <header className="py-5 relative w-full h-full max-h-50">
       <Image
-        fill
+        width={100}
+        height={100}
         alt="logo"
         src={"/svg/rick-and-morty-green-logo.svg"}
         className="w-full h-full px-10"
