@@ -18,30 +18,32 @@ export default async function Character({ characterId }: CharacterPageProps) {
   )?.url;
 
   return (
-    <section className="w-full flex items-center justify-center mt-20 mb-20 flex-col gap-10">
-      <div className="bg-white w-full max-w-[1000px] rounded-4xl p-10 flex gap-10 relative">
-        <div className="absolute -right-15 -top-15 rotate">
+    <section className="w-full flex items-center justify-center mt-20 mb-20 flex-col gap-10 px-5  sm:px-15 md:px-20 ">
+      <div className="bg-[#272727] w-full max-w-[1000px] rounded-4xl p-5 sm:p-10 flex gap-5 sm:gap-10 relative  max-lg:flex-col max-lg:justify-center max-lg:items-center">
+        <div className="absolute sm:-right-15 sm:-top-15  overflow-hidden max-sm:-top-25">
           <Image
             width={150}
             height={150}
             src={planetImg || `/svg/unknown_planet.png`}
             alt="Image"
+            className="rotate"
           />
-          <div className="absolute inset-0  z-1 rounded-full shadow-[inset_0_0_10px_5px_rgba(0,0,0,0.6)] pointer-events-none"></div>
         </div>
 
-        <div className="border-2 border-black rounded-3xl overflow-hidden w-[500px] relative">
+        <div className="border-2 border-white rounded-3xl overflow-hidden w-full max-lg:h-[400px] max-w-[400px] max-sm:h-[300px]">
           <Image
             alt="image"
             src={characterData.image}
-            fill
+            width={300}
+            height={300}
+            className="w-full h-full "
             style={{ objectFit: "cover" }}
           />
         </div>
 
-        <div className="flex flex-col gap-10 text-black w-2/3">
-          <div className="flex flex-col gap-5 bg-primary-100 rounded-3xl p-10 border-2 border-black">
-            <h1 className="text-5xl font-bold font-mono">
+        <div className="flex flex-col gap-10 text-black w-full lg:w-2/3  justify-between md:flex-row lg:flex-col ">
+          <div className="flex flex-col gap-5 bg-primary-100 rounded-3xl p-5 md:p-10 border-2 border-white max-lg:w-full">
+            <h1 className="text-5xl font-bold font-mono max-md:text-3xl">
               {characterData.name}
             </h1>
             <hr className="w-1/2" />
@@ -85,16 +87,35 @@ export default async function Character({ characterId }: CharacterPageProps) {
             </div>
           </div>
 
-          <div className="flex gap-2 bg-primary-100 rounded-3xl p-4 justify-evenly h-20">
-            <Image src={"/svg/gun-icon.svg"} width={60} height={60} alt="" />
-            <Image src={"/svg/atom-icon.svg"} width={60} height={60} alt="" />
+          <div className="flex gap-2 bg-primary-100 rounded-3xl p-4 justify-evenly lg:h-20 md:flex-col lg:flex-row">
+            <Image
+              src={"/svg/gun-icon.svg"}
+              width={60}
+              height={60}
+              alt=""
+              className="max-md:size-12 max-sm:size-8"
+            />
+            <Image
+              src={"/svg/atom-icon.svg"}
+              width={60}
+              height={60}
+              alt=""
+              className="max-md:size-12 max-sm:size-8"
+            />
             <Image
               src={"/svg/neptune-icon.svg"}
               width={60}
               height={60}
               alt=""
+              className="max-md:size-12 max-sm:size-8"
             />
-            <Image src={"/svg/space-icon.svg"} width={60} height={60} alt="" />
+            <Image
+              src={"/svg/space-icon.svg"}
+              width={60}
+              height={60}
+              alt=""
+              className="max-md:size-12 max-sm:size-8"
+            />
           </div>
         </div>
       </div>
