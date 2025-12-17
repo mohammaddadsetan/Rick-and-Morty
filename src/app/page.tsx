@@ -10,7 +10,7 @@ export default function Page() {
   }, []);
 
   return (
-    <div className="w-full flex justify-center relative h-70 ">
+    <div className="w-full flex justify-center relative h-70 mx-20">
       <Image
         fill
         src="/svg/rick-car.svg"
