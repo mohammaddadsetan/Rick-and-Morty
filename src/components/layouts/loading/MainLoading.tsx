@@ -117,23 +117,23 @@ export default function MainLoading() {
             </div>
           ) : (
             <>
-              <div className="flex flex-col   items-center  hover:scale-105 transition-transform duration-300 ">
+              <div className="flex flex-col   items-center  hover:scale-105 transition-transform duration-300 z-1">
                 <Image
                   src={"svg/rick and morthy_fuck_finger.svg"}
                   width={300}
                   height={300}
                   alt="image"
-                  className="-mb-8 max-sm:w-120 max-sm:-mb-[12%] shrink-0 "
+                  className="-mb-8 max-sm:w-70 max-sm:-mb-[12%] shrink-0 "
                   priority={true}
                   quality={10}
                 />
                 <button
-                  className="text-5xl border-4  rounded-[40px] w-full max-w-80  max-sm:max-w-70 py-3  pb-6 flex items-center justify-center   hover:bg-primary-100 hover:text-black text-white transition-all duration-300"
+                  className="text-3xl font-bold font-mono sm:text-5xl border-4  rounded-[40px] w-full max-w-90  max-sm:max-w-60 py-3 pb-4 flex items-center justify-center   hover:bg-primary-100 hover:text-black text-white transition-all duration-300"
                   onClick={handleStart}>
                   Get Start
                 </button>
               </div>
-              <div className="absolute -inset-10 sm:-inset-20  md:-inset-30 pointer-events-none ">
+              <div className="absolute -inset-8 sm:-inset-14  md:-inset-30 pointer-events-none z-0">
                 <div className="absolute inset-0 rounded-full border-4 border-cyan-500/40 animate-ping" />
                 <div className="absolute inset-0 rounded-full border-2 border-purple-500/50 animate-spin-slow" />
                 <div className="absolute inset-0 rounded-full border border-emerald-500/30 animate-spin-fast [animation-direction:reverse]" />
