@@ -16,7 +16,7 @@ export default async function CharactersContainer({
   const data = await getCharactersByFilter({ status, species, name, page });
 
   return (
-    <section className="w-full">
+    <section className="w-full px-5 sm:px-10 flex items-center flex-col justify-center">
       <CharactersFilter />
 
       {data ? (
