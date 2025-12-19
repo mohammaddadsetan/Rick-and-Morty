@@ -32,7 +32,7 @@ export default function CharactersFilter() {
   };
   let timer: NodeJS.Timeout;
   return (
-    <div className="flex items-center justify-center gap-5 ">
+    <div className="flex items-center justify-center gap-5 max-md:flex-col max-md:max-w-[500] w-full">
       <Input
         defaultValue={searchParams.get("name") || ""}
         placeholder="search by name"
@@ -42,7 +42,7 @@ export default function CharactersFilter() {
             updatedFilter("name", value);
           }, 1000);
         }}
-        className="w-[600px]"
+        className="md:w-[600px] w-full"
       />
       <Select
         defaultValue={searchParams.get("status") || ""}
@@ -50,7 +50,7 @@ export default function CharactersFilter() {
         label="status"
         onChange={(value) => updatedFilter("status", value)}
         fullSelect
-        className="max-w-[200px]"
+        className="md:max-w-[200px]"
       />
       <Select
         defaultValue={searchParams.get("species") || ""}
@@ -58,7 +58,7 @@ export default function CharactersFilter() {
         label="species"
         onChange={(value) => updatedFilter("species", value)}
         fullSelect
-        className="max-w-[200px]"
+        className="md:max-w-[200px]"
       />
     </div>
   );
