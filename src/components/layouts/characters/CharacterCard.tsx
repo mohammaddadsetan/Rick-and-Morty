@@ -27,7 +27,7 @@ export default function CharacterCard({
   const color =
     status === "Alive" ? "#87F54E" : status === "Dead" ? "#fb2c36" : "#ffd230";
   return (
-    <div className="w-60 sm:w-70 md:w-72 shrink-0 overflow-hidden rounded-3xl snap-start ">
+    <div className="w-65 sm:w-70 md:w-72 shrink-0 overflow-hidden rounded-3xl snap-start">
       {" "}
       <div className="w-full h-72 relative">
         <button

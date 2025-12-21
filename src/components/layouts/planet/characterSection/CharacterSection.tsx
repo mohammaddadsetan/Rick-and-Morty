@@ -42,7 +42,7 @@ export default function CharacterSection({
       if (!isOverflow) return;
 
       e.preventDefault();
-      const speed = 10;
+      const speed = 4;
       container.scrollLeft += e.deltaY * speed;
     };
 
@@ -115,10 +115,11 @@ export default function CharacterSection({
 
       <div
         ref={scrollRef}
-        className="flex gap-4 overflow-x-auto scroll-smooth snap-x snap-mandatory scrollbar-hide  ">
+        className="flex gap-4 overflow-x-auto scroll-smooth snap-x snap-mandatory scrollbar-hide "
+        style={{ overscrollBehaviorX: "contain" }}>
         {planetCharacters.length > 0 ? (
           planetCharacters.map((char) => (
-            <div key={char.id} className="snap-start flex shrink-0">
+            <div key={char.id} className="snap-start flex shrink-0 ">
               <CharacterCard
                 character_img={char.image}
                 species={char.species}
