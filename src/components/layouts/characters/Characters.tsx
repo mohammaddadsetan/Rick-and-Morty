@@ -51,7 +51,7 @@ function Characters({ character, page = 1, currentPage = 1 }: characterProps) {
           onClick={() => setMoreCharacters(true)}
         />
       )}
-      {moreCharacters && (
+      {moreCharacters && pathname !== "/favorites" && (
         <Pagination page_lenght={page} current_page={currentPage} />
       )}
     </section>
