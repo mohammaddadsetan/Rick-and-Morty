@@ -28,7 +28,7 @@ export default function Planets({
         alt="planet icon"
         priority={true}
         src={src}
-        quality={80}
+        quality={10}
         className={` animate-zoom-in   hover:drop-shadow-[0px_0px_20px]  transform duration-100  ease-in size-[${imgSize}] `}
         onAnimationEnd={(e) => {
           e.currentTarget.classList.remove("animate-zoom-in");
