@@ -6,6 +6,7 @@ import MultiNavButton from "@/components/ui/MultiNavButton";
 import { useContext, useEffect, useState } from "react";
 import { FavoriteContext } from "@/context/FavoriteContext";
 import { X } from "lucide-react";
+import Link from "next/link";
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   useEffect(() => {
@@ -38,16 +39,18 @@ export default function Header() {
     </header>
   ) : (
     <>
-      <header className="flex items-center justify-between px-10 py-5 gap-5 lg:gap-10 ">
-        <Image
-          alt="logo"
-          src={`/svg/rick&morty_black.svg`}
-          width={50}
-          height={50}
-          className="h-full w-auto bg-white rounded-[10px] p-1 block sm:hidden"
-        />
+      <header className="flex items-center justify-between px-5 sm:px-10 py-5 gap-5 lg:gap-10 ">
+        <Link href={"/"}>
+          <Image
+            alt="logo"
+            src={`/svg/rick&morty_black.svg`}
+            width={50}
+            height={50}
+            className="h-full w-auto bg-white rounded-[10px] p-1 block sm:hidden"
+          />
+        </Link>
 
-        <div className="hidden sm:block">
+        <Link className="hidden sm:block w-full" href={"/"}>
           <Image
             alt=""
             src={`/svg/rick-and-morty-green-logo.svg`}
@@ -55,7 +58,7 @@ export default function Header() {
             height={100}
             className="h-full w-60 md:w-100"
           />
-        </div>
+        </Link>
 
         <button
           className="cursor-pointer z-101"
