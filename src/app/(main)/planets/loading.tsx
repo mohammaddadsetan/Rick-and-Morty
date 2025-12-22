@@ -1,7 +1,7 @@
 export default function Loading() {
   return (
-    <section className="fixed inset-0 flex items-center justify-center bg-[#27272728]">
-      <div className="relative w-80 h-80 md:w-96 md:h-96">
+    <div className="relative inset-0 flex items-center justify-center bg-[#27272728] ">
+      <div className="absolute size-40 sm:size-60 md:size-70 lg:size-90">
         <div className="absolute inset-0 rounded-full bg-gradient-to-br from-gray-800 via-gray-700 to-gray-900 shadow-2xl">
           <div className="absolute inset-0 rounded-full bg-gray-600/60 blur-3xl animate-pulse" />
           <div className="absolute inset-4 rounded-full bg-gray-800/80" />
@@ -25,10 +25,10 @@ export default function Loading() {
           <div className="absolute left-0 top-1/2 -translate-y-1/2 w-3 h-3 bg-emerald-400 rounded-full shadow-lg shadow-emerald-400/80" />
         </div>
 
-        <div className="absolute -inset-20">
+        <div className="absolute -inset-10">
           <div className="absolute inset-0 rounded-full bg-cyan-500/10 blur-3xl animate-pulse" />
         </div>
       </div>
-    </section>
+    </div>
   );
 }
