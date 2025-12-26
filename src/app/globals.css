@@ -2,7 +2,7 @@
 @theme{
 --color-primary-100: #87F54E;
 --color-neutral:#ffffff
---color-black:#262626
+--color-neutral-800:#262626
 
 
 
@@ -14,5 +14,19 @@
   --breakpoint-lg: 1024px;
   --breakpoint-xl: 1280px;
   --breakpoint-2xl: 1920px;
+
 }
 
+:root {
+  --neutral:#ffffff;
+  --primary: #87F54E;
+  --neutral-mirror: #ffffffe1;
+  --text:#262626
+}
+
+.dark {
+  --neutral: #262626;
+  --primary: #87F54E;
+   --neutral-mirror: #272727d2;
+   --text:#ffffff
+}
