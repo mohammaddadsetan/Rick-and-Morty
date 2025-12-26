@@ -7,6 +7,8 @@ import FavoriteProvider from "@/context/FavoriteContext";
 import Image from "next/image";
 import MainLoading from "@/components/layouts/loading/MainLoading";
 import CharacterDataWrapper from "@/context/CharacterContext/CharacterDataWrapper";
+import { ThemeProviderr } from "@/context/themeProvider/ThemeProvider";
+import ThemeToggle from "@/components/ui/ThemeToggle";
 
 export const metadata: Metadata = {
   title: "Rick and Morty",
@@ -19,28 +21,31 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className="relative h-screen overflow-x-hidden flex flex-col justify-between bg-black">
-        <MainLoading />
-        <div className="fixed inset-0 -z-100">
-          <Image
-            src="/svg/fondo-hiperespacial-3d-efecto-tunel-urdimbre 1.svg"
-            alt="background"
-            className="w-full h-full object-cover"
-            fill
-            priority={true}
-          />
-        </div>
+        <ThemeProviderr>
+          <ThemeToggle />
+          <MainLoading />
+          <div className="fixed inset-0 -z-100">
+            <Image
+              src="/svg/fondo-hiperespacial-3d-efecto-tunel-urdimbre 1.svg"
+              alt="background"
+              className="w-full h-full object-cover"
+              fill
+              priority={true}
+            />
+          </div>
 
-        <FavoriteProvider>
-          <Header />
-          <CharacterDataWrapper>
-            <main className="flex items-center justify-center ">
-              {children}
-            </main>
-          </CharacterDataWrapper>
-          <Footer />
-        </FavoriteProvider>
+          <FavoriteProvider>
+            <Header />
+            <CharacterDataWrapper>
+              <main className="flex items-center justify-center ">
+                {children}
+              </main>
+            </CharacterDataWrapper>
+            <Footer />
+          </FavoriteProvider>
+        </ThemeProviderr>
       </body>
     </html>
   );
