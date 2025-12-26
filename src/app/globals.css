@@ -25,7 +25,8 @@
 }
 
 .dark {
-  --neutral: #262626;
+  --neutral:#000000;
+  --neutral-700: #262626;
   --primary: #87F54E;
    --neutral-mirror: #272727d2;
    --text:#ffffff
