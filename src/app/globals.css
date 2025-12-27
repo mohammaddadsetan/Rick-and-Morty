@@ -21,7 +21,8 @@
   --neutral:#ffffff;
   --primary: #87F54E;
   --neutral-mirror: #ffffffe1;
-  --text:#262626
+  --text:#262626;
+  --secondary:#000000;
 }
 
 .dark {
@@ -29,5 +30,6 @@
   --neutral-700: #262626;
   --primary: #87F54E;
    --neutral-mirror: #272727d2;
-   --text:#ffffff
+   --text:#ffffff;
+   --secondary:#ffffff;
 }
