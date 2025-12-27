@@ -4,11 +4,11 @@ import "@/styles/globals.css";
 import Header from "@/components/shared/header/Header";
 import Footer from "@/components/shared/footer/Footer";
 import FavoriteProvider from "@/context/FavoriteContext";
-import Image from "next/image";
 import MainLoading from "@/components/layouts/loading/MainLoading";
 import CharacterDataWrapper from "@/context/CharacterContext/CharacterDataWrapper";
 import { ThemeProviderr } from "@/context/themeProvider/ThemeProvider";
 import ThemeToggle from "@/components/ui/ThemeToggle";
+import Background from "@/components/shared/background/Background";
 
 export const metadata: Metadata = {
   title: "Rick and Morty",
@@ -26,15 +26,7 @@ export default function RootLayout({
         <ThemeProviderr>
           <ThemeToggle />
           <MainLoading />
-          <div className="fixed inset-0 -z-100">
-            <Image
-              src="/svg/fondo-hiperespacial-3d-efecto-tunel-urdimbre 1.svg"
-              alt="background"
-              className="w-full h-full object-cover"
-              fill
-              priority={true}
-            />
-          </div>
+          <Background />
 
           <FavoriteProvider>
             <Header />
