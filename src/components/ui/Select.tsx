@@ -46,7 +46,7 @@ export default function Select({
         }}
         ref={buttonRef}
         onClick={() => setIsOpen(!isOpen)}
-        className={`flex items-center  justify-between gap-2 p-2 rounded-lg bg-white text-black  cursor-pointer ${
+        className={`flex items-center  justify-between gap-2 p-2 rounded-lg bg-[var(--secondary)] text-[var(--neutral)] cursor-pointer ${
           fullSelect && "w-full"
         }`}>
         <span className="pb-1">{selectedOption}</span>
@@ -60,9 +60,9 @@ export default function Select({
       {isOpen && (
         <ul
           style={{ top: `${dropHeight}px` }}
-          className={` w-full bg-white text-black rounded-lg p-1 space-y-1 transition-all duration-300 absolute   z-20 cursor-pointer`}>
+          className={` w-full bg-[var(--secondary)] text-[var(--neutral)] rounded-lg p-1 space-y-1 transition-all duration-300 absolute   z-20 cursor-pointer`}>
           <li
-            className="w-full p-1 hover:bg-amber-100 rounded-md "
+            className="w-full p-1 hover:bg-amber-100 rounded-md dark:hover:text-black "
             onMouseDown={() => {
               setSelectedOption("all");
               setIsOpen(false);
@@ -72,7 +72,7 @@ export default function Select({
           </li>
           {optionsValues.map((option) => (
             <li
-              className="w-full p-1 hover:bg-amber-100 rounded-md "
+              className="w-full p-1 hover:bg-amber-100 dark:hover:text-black rounded-md "
               key={option.value}
               onMouseDown={() => {
                 setSelectedOption(option.label);
