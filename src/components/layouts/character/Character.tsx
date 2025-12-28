@@ -19,7 +19,7 @@ export default async function Character({ characterId }: CharacterPageProps) {
 
   return (
     <section className="w-full flex items-center justify-center mt-20 mb-20 flex-col gap-10 px-5  sm:px-15 md:px-20 ">
-      <div className="bg-[#272727] w-full max-w-[1000px] rounded-4xl p-5 sm:p-10 flex gap-5 sm:gap-10 relative  max-lg:flex-col max-lg:justify-center max-lg:items-center">
+      <div className="bg-(--neutral-700) w-full max-w-[1000px] rounded-4xl p-5 sm:p-10 flex gap-5 sm:gap-10 relative  max-lg:flex-col max-lg:justify-center max-lg:items-center">
         <div className="absolute sm:-right-15 sm:-top-15  overflow-hidden max-sm:-top-25">
           <Image
             width={150}
