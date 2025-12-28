@@ -35,9 +35,7 @@ export default function Pagination({
 
   return (
     <div className="flex flex-col items-center justify-center mb-10 gap-5">
-      {/* Desktop */}
       <div className="flex items-center gap-2 sm:gap-3 md:gap-4">
-        {/* Left */}
         <Link
           href={createHref(current_page - 1)}
           aria-disabled={current_page === 1}
@@ -56,7 +54,7 @@ export default function Pagination({
         )}
 
         {current_page > 3 && (
-          <span className="w-3 sm:w-6 h-0 border-b-6 border-dotted"></span>
+          <span className="w-3 sm:w-6 h-0 border-b-6 border-dotted border-(--text)"></span>
         )}
 
         {[...Array(page_lenght)]
@@ -68,7 +66,7 @@ export default function Pagination({
               <Link
                 key={pageNumber}
                 href={createHref(pageNumber)}
-                className={`size-8 sm:size-10 md:size-12 flex items-center justify-center border-2 border-primary-100 rounded-lg md:rounded-xl text-lg bg-black font-bold hover:bg-primary-100 hover:text-black transition-all duration-150 ${
+                className={`size-9 sm:size-10 md:size-12 flex items-center justify-center border-2 border-primary-100 rounded-lg md:rounded-xl text-lg bg-black font-bold hover:bg-primary-100 hover:text-black transition-all duration-150 ${
                   current_page === pageNumber ? active : ""
                 }`}>
                 {pageNumber}
@@ -77,7 +75,7 @@ export default function Pagination({
           })}
 
         {current_page < page_lenght - 3 && (
-          <span className="w-3 sm:w-6 h-0 border-b-6 border-dotted"></span>
+          <span className="w-3 sm:w-6 h-0 border-b-6 border-dotted border-(--text)"></span>
         )}
 
         {current_page < page_lenght - 2 && (
