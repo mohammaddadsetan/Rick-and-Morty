@@ -32,7 +32,7 @@ export default function CharactersFilter() {
   };
   let timer: NodeJS.Timeout;
   return (
-    <div className="flex items-center justify-center gap-5 max-md:flex-col max-md:max-w-[500] w-full">
+    <div className="flex items-center justify-center gap-5 max-md:flex-col max-md:max-w-[500] w-full px-5">
       <Input
         defaultValue={searchParams.get("name") || ""}
         placeholder="search by name"
