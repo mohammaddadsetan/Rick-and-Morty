@@ -54,7 +54,7 @@ export default function MultiNavButton({
               <span className="absolute inset-0 z-0 overflow-hidden   rounded-lg ">
                 <span className="absolute  animate-border-spin   inset-[-1000%]  bg-[conic-gradient(from_0deg,transparent_0deg_80%,#ffffff_90%,transparent_100%)]" />
 
-                <span className="absolute inset-[2px]  bg-[var(--neutral)] rounded-[5px] z-10"></span>
+                <span className="absolute inset-0.5  bg-(--neutral) rounded-[5px] z-10"></span>
               </span>
             )}
 

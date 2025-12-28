@@ -7,6 +7,7 @@ import { useContext, useEffect, useState } from "react";
 import { FavoriteContext } from "@/context/FavoriteContext";
 import { X } from "lucide-react";
 import Link from "next/link";
+import ImageInverter from "@/components/ui/ImageInverter";
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   useEffect(() => {
@@ -68,12 +69,12 @@ export default function Header() {
           {isOpen ? (
             <X size={50} />
           ) : (
-            <Image
-              alt="menu"
-              src={"/svg/burger-menu.svg"}
-              height={50}
+            <ImageInverter
               width={50}
+              height={50}
+              alt="menu"
               className="block md:hidden"
+              src="/svg/burger-menu.svg"
             />
           )}
         </button>
