@@ -2,6 +2,7 @@ import MultiNavButton from "@/components/ui/MultiNavButton";
 import Image from "next/image";
 import Link from "next/link";
 import { HeaderLinks } from "../header/Data";
+import ImageInverter from "@/components/ui/ImageInverter";
 export default function Footer() {
   return (
     <footer className="px-5 py-2 bg-[var(--neutral-mirror)] w-full  h-fit flex items-center gap-9  text-[var(--text)] font-mono  ">
@@ -24,7 +25,13 @@ export default function Footer() {
         className="flex flex-col items-center gap-1 hover:text-primary-100 text-sm cursor-pointer order-4 max-xsm:order-1
           shrink-0">
         <p className="hidden md:block font-semibold">Developer GitHub</p>
-        <Image width={40} height={40} src={"/svg/git-logo.svg"} alt="git svg" />
+
+        <ImageInverter
+          alt="git svg"
+          height={40}
+          src="/svg/git-logo.svg"
+          width={40}
+        />
       </Link>
     </footer>
   );
