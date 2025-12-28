@@ -37,7 +37,7 @@ export default function FavoritesContainer() {
           ))}
         </div>
       ) : (
-        <p className=" md:text-2xl drop-shadow-[0px_0px_5px] drop-shadow-primary-100 font-bold max-w-[500px] text-center">
+        <p className=" md:text-2xl drop-shadow-[0px_0px_5px] drop-shadow-primary-100 font-bold max-w-[500px] text-center text-(--text)">
           There doesn't seem to be anything to show here currently, if you see a
           character you want to add to favorites, hit the white heart so you can
           see them here!
