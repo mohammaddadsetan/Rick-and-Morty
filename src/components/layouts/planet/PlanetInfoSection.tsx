@@ -21,7 +21,7 @@ export default function PlanetInfoSection({
         />
       </div>
 
-      <ul className="font-extrabold text-2xl space-y-3 drop-shadow-[0px_0px_2px] drop-shadow-[#87F54E] mt-5">
+      <ul className="font-extrabold text-2xl space-y-3 drop-shadow-[0px_0px_2px] drop-shadow-primary-100 mt-5 text-(--text)">
         <li>
           Planet:
           <ul>
