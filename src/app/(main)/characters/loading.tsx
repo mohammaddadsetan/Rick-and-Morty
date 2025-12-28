@@ -8,7 +8,7 @@ export default function Loading() {
         .map((_, key) => (
           <div
             key={key}
-            className="bg-gray-700 w-72 h-110 rounded-3xl items-center justify-between flex flex-col p-5 animate-pulse relative overflow-hidden">
+            className="bg-gray-700 w-65 sm:w-70 md:w-72 h-110 rounded-3xl items-center justify-between flex flex-col p-5 animate-pulse relative overflow-hidden">
             <div className="absolute inset-0 pointer-events-none">
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-cyan-400/20 to-transparent -translate-x-full animate-shimmer" />
             </div>
