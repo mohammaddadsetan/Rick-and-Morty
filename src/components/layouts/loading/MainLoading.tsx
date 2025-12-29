@@ -145,11 +145,11 @@ export default function MainLoading() {
 
       <div
         ref={containerRef}
-        className="fixed inset-0 z-50 pointer-events-none">
+        className="fixed inset-0 z-600 pointer-events-none">
         {Array.from({ length: LINES_COUNT }).map((_, i) => (
           <div
             key={i}
-            className="absolute size-1   bg-white rounded-full shadow-md opacity-35"
+            className="absolute size-1.5   bg-white rounded-full shadow-md opacity-35"
           />
         ))}
       </div>
