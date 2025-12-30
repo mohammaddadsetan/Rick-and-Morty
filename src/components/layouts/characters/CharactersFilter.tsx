@@ -2,9 +2,12 @@
 import Input from "@/components/ui/Input";
 import Select from "@/components/ui/Select";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import React from "react";
+import React, { useRef, useState } from "react";
 
 export default function CharactersFilter() {
+  const [isLoading, setIsLoading] = useState(false);
+  const timerRef = useRef<NodeJS.Timeout | null>(null);
+
   const statusOption = [
     { value: "alive", label: "Alive" },
     { value: "dead", label: "Dead" },
@@ -17,6 +20,7 @@ export default function CharactersFilter() {
     { value: "robot", label: "Robot" },
     { value: "animal", label: "Animal" },
   ];
+
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -29,26 +33,44 @@ export default function CharactersFilter() {
       params.delete(key);
     }
     router.push(`${pathname}?${params.toString()}`);
+    setIsLoading(false);
   };
-  let timer: NodeJS.Timeout;
+
+  const handleNameChange = (value: string) => {
+    if (timerRef.current) {
+      clearTimeout(timerRef.current);
+    }
+
+    setIsLoading(true);
+
+    timerRef.current = setTimeout(() => {
+      updatedFilter("name", value.trim());
+    }, 800);
+  };
+
+  React.useEffect(() => {
+    return () => {
+      if (timerRef.current) {
+        clearTimeout(timerRef.current);
+      }
+    };
+  }, []);
+
   return (
-    <div className="flex items-center justify-center gap-5 max-md:flex-col max-md:max-w-[500] w-full px-5">
+    <div className="flex items-center justify-center gap-5 max-md:flex-col max-md:max-w-[500px] w-full px-5">
       <Input
         defaultValue={searchParams.get("name") || ""}
         placeholder="search by name"
-        onChange={(value) => {
-          clearTimeout(timer);
-          timer = setTimeout(() => {
-            updatedFilter("name", value);
-          }, 1000);
-        }}
-        className="md:w-[600px] w-full"
+        onChange={handleNameChange}
+        className="md:w-[600px] w-full h-11"
       />
       <Select
         defaultValue={searchParams.get("status") || ""}
         options={statusOption}
         label="status"
-        onChange={(value) => updatedFilter("status", value)}
+        onChange={(value) => {
+          updatedFilter("status", value);
+        }}
         fullSelect
         className="md:max-w-[200px]"
       />
@@ -56,9 +78,19 @@ export default function CharactersFilter() {
         defaultValue={searchParams.get("species") || ""}
         options={speciesOption}
         label="species"
-        onChange={(value) => updatedFilter("species", value)}
+        onChange={(value) => {
+          updatedFilter("species", value);
+        }}
         fullSelect
         className="md:max-w-[200px]"
+      />
+
+      <div
+        className={
+          isLoading
+            ? "size-8 border-4 border-t-transparent border-(--text) rounded-full animate-spin"
+            : "size-8"
+        }
       />
     </div>
   );
