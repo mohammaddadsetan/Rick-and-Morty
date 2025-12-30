@@ -9,7 +9,7 @@ type CharacterPageProps = {
 export default async function Page({ params }: CharacterPageProps) {
   const { character } = await params;
   const isOnlyNumber = /^\d+$/.test(character.toString());
-  if (!isOnlyNumber) {
+  if (!isOnlyNumber || Number(character) > 826) {
     notFound();
   }
   const characterId = parseInt(character);
