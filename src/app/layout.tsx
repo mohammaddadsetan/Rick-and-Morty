@@ -9,6 +9,7 @@ import CharacterDataWrapper from "@/context/CharacterContext/CharacterDataWrappe
 import { ThemeProviderr } from "@/context/themeProvider/ThemeProvider";
 import ThemeToggle from "@/components/ui/ThemeToggle";
 import Background from "@/components/shared/background/Background";
+import { Toaster } from "react-hot-toast";
 
 export const metadata: Metadata = {
   title: "Rick and Morty",
@@ -24,9 +25,18 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className="relative h-screen overflow-x-hidden flex flex-col justify-between bg-black">
         <ThemeProviderr>
-          <ThemeToggle />
           <MainLoading />
           <Background />
+          <ThemeToggle />
+          <Toaster
+            toastOptions={{
+              className: "",
+              style: {
+                background: "var(--text)",
+                color: "var(--neutral-700)",
+              },
+            }}
+          />
 
           <FavoriteProvider>
             <Header />
