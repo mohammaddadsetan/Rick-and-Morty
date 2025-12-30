@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useContext } from "react";
 import { FavoriteContext } from "@/context/FavoriteContext";
+import toast from "react-hot-toast";
 interface characterCardProps {
   character_img: string;
   character_name: string;
@@ -24,6 +25,13 @@ export default function CharacterCard({
   if (!ctx) return null;
   const { favorites, toggleFavorite } = ctx;
 
+  const handleCLck = () => {
+    toggleFavorite?.(id);
+    const isFavorite = favorites.includes(id)
+      ? toast.success(`${character_name} removed from favorites`)
+      : toast.success(`${character_name} added to favorites`);
+  };
+
   const color =
     status === "Alive" ? "#87F54E" : status === "Dead" ? "#fb2c36" : "#ffd230";
   return (
@@ -31,7 +39,7 @@ export default function CharacterCard({
       {" "}
       <div className="w-full h-72 relative">
         <button
-          onClick={() => toggleFavorite?.(id)}
+          onClick={() => handleCLck()}
           className="bg-neutral-800 cursor-pointer   rounded-full size-10 flex items-center justify-center absolute top-0 left-0 overflow-hidden m-1 z-10">
           <Heart
             color={`${favorites.includes(id) ? "#fb2c36" : "white"}`}
@@ -45,7 +53,7 @@ export default function CharacterCard({
           Go
         </Link>
       </div>
-      <div className="text-[#4d4d4d] bg-[#87F54E] px-4 py-4 flex flex-col pb-0 gap-3 h-50 justify-between">
+      <div className="text-[#4d4d4d] bg-primary-100 px-4 py-4 flex flex-col pb-0 gap-3 h-50 justify-between">
         <div>
           <p className="text-lg font-bold">Name:</p>
           <p>{character_name}</p>
