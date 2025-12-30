@@ -6,7 +6,7 @@ import React from "react";
 export default function NotFound() {
   const router = useRouter();
   return (
-    <section className="flex items-center justify-center h-full p-10 font-mono gap-10 md:gap-20 text-center max-sm:flex-col">
+    <section className="flex items-center justify-center h-full p-10 font-mono gap-10 md:gap-20 text-center max-sm:flex-col text-(--text)">
       <div className="flex items-center justify-evenly flex-col h-full gap-8">
         <p className="text-5xl md:text-7xl drop-shadow-[0px_0px_5px] drop-shadow-primary-100 font-bold">
           planet not found
