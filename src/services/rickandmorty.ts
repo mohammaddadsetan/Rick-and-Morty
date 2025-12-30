@@ -64,7 +64,10 @@ export const getCharacters = unstable_cache(
       });
 
       if (!res.ok) {
-        throw new Error(`Failed to fetch characters: ${res.status}`);
+        if (allCharacters.length === 0) {
+          return [];
+        }
+        break;
       }
 
       const data = (await res.json()) as RickAndMortyApiResponse;
@@ -90,7 +93,10 @@ export const getAllEpisodes = unstable_cache(
       const res = await fetch(nextUrl);
 
       if (!res.ok) {
-        throw new Error(`Failed to fetch episodes: ${res.status}`);
+        if (allEpisodes.length === 0) {
+          return [];
+        }
+        break;
       }
 
       const data = (await res.json()) as RickAndMortyEpisodeApiResponse;
@@ -121,7 +127,7 @@ export const getCharactersByFilter = async (filters: {
     if (status) params.append("status", status);
     if (species) params.append("species", species);
     if (name) params.append("name", name);
-    if (page) params.append("page", page.toString());
+    if (page > 1) params.append("page", page.toString());
 
     const res = await fetch(`${API}/character?${params.toString()}`);
     if (!res.ok) {
@@ -164,7 +170,7 @@ export const getCharacterById = (id: number) =>
       revalidate: ONE_MONTH_IN_SECONDS,
       tags: [`character-${id}`, "characters"],
     }
-  )();
+  );
 
 export const getLocationById = (id: number) =>
   unstable_cache(
@@ -179,4 +185,4 @@ export const getLocationById = (id: number) =>
     },
     [`location-${id}`],
     { tags: [`location-${id}`, "locations"] }
-  )();
+  );
