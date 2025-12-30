@@ -6,7 +6,7 @@ import React from "react";
 export default function NotFound() {
   const router = useRouter();
   return (
-    <section className="flex items-center justify-center h-full gap-10 lg:gap-20 font-mono max-md:flex-col p-10 text-center">
+    <section className="flex items-center justify-center h-full gap-10 lg:gap-20 font-mono max-md:flex-col p-10 text-center text-(--text)">
       <div className="flex items-center justify-evenly flex-col h-full gap-8">
         <p className="text-4xl md:text-7xl drop-shadow-[0px_0px_5px] drop-shadow-primary-100 font-bold">
           character not found
