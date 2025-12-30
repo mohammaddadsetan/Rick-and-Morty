@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React from "react";
 
-export default function Error() {
+export default function notFound() {
   return (
     <section className="flex flex-col items-center justify-center px-5 sm:px-10 py-10 font-mono gap-10 text-(--text)">
       <h3 className="text-center text-6xl md:text-8xl lg:text-9xl font-bold ">
