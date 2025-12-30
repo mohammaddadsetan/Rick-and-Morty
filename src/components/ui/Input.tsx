@@ -15,7 +15,7 @@ export default function Input({
   const [value, setValue] = useState<string>(defaultValue ?? "");
   return (
     <div
-      className={`bg-[var(--secondary)] text-[var(--neutral)] px-2 py-2 rounded-lg relative ${className}`}>
+      className={`bg-(--secondary) text-(--neutral) px-2 py-2 rounded-lg relative ${className}`}>
       <Search
         className="absolute left-2 top-1/2 -translate-y-1/2 text-gray-400"
         size={18}
