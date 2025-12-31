@@ -1,26 +1,19 @@
-<svg width="224" height="224" viewBox="0 0 224 224" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g filter="url(#filter0_di_87_148)">
-<rect x="35" y="35" width="154" height="154" rx="77" fill="url(#pattern0_87_148)" shape-rendering="crispEdges"/>
-<rect x="38" y="38" width="148" height="148" rx="74" stroke="#87F54E" stroke-width="6" shape-rendering="crispEdges"/>
+<svg width="154" height="154" viewBox="0 0 154 154" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g filter="url(#filter0_i_87_148)">
+<rect width="154" height="154" rx="77" fill="url(#pattern0_87_148)"/>
 </g>
+<rect x="1.5" y="1.5" width="151" height="151" rx="75.5" stroke="#87F54E" stroke-width="3"/>
 <defs>
-<filter id="filter0_di_87_148" x="0" y="0" width="224" height="224" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<filter id="filter0_i_87_148" x="0" y="0" width="154" height="154" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
 <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
 <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-<feMorphology radius="5" operator="dilate" in="SourceAlpha" result="effect1_dropShadow_87_148"/>
-<feOffset/>
-<feGaussianBlur stdDeviation="15"/>
-<feComposite in2="hardAlpha" operator="out"/>
-<feColorMatrix type="matrix" values="0 0 0 0 0.529412 0 0 0 0 0.960784 0 0 0 0 0.305882 0 0 0 1 0"/>
-<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_87_148"/>
-<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_87_148" result="shape"/>
-<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-<feMorphology radius="6" operator="erode" in="SourceAlpha" result="effect2_innerShadow_87_148"/>
+<feMorphology radius="6" operator="erode" in="SourceAlpha" result="effect1_innerShadow_87_148"/>
 <feOffset/>
 <feGaussianBlur stdDeviation="70"/>
 <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
 <feColorMatrix type="matrix" values="0 0 0 0 0.529412 0 0 0 0 0.960784 0 0 0 0 0.305882 0 0 0 1 0"/>
-<feBlend mode="normal" in2="shape" result="effect2_innerShadow_87_148"/>
+<feBlend mode="normal" in2="shape" result="effect1_innerShadow_87_148"/>
 </filter>
 <pattern id="pattern0_87_148" patternContentUnits="objectBoundingBox" width="1" height="1">
 <use xlink:href="#image0_87_148" transform="scale(0.002)"/>
