@@ -19,7 +19,7 @@ export default function Background() {
   const isDark = resolvedTheme === "dark";
 
   return (
-    <div className="fixed inset-0 -z-10 pointer-events-none">
+    <div className="fixed h-screen w-screen -z-10 pointer-events-none">
       <Image
         src="/svg/light-bg.webp"
         alt="background light"
