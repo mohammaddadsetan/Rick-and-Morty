@@ -153,36 +153,38 @@ export const getLocations = unstable_cache(
     tags: ["locations"],
   }
 );
-export const getCharacterById = (id: number) =>
-  unstable_cache(
-    async (): Promise<CharacterType | null> => {
-      if (!id || id < 1) return null;
-      try {
-        const res = await fetch(`${API}/character/${id}`);
-        if (!res.ok) return null;
-        return await res.json();
-      } catch {
-        return null;
-      }
-    },
-    [`character-${id}`],
-    {
-      revalidate: ONE_MONTH_IN_SECONDS,
-      tags: [`character-${id}`, "characters"],
+export const getCharacterById = unstable_cache(
+  async (id: number): Promise<CharacterType | null> => {
+    if (!id || id < 1) return null;
+    try {
+      const res = await fetch(`${API}/character/${id}`);
+      if (!res.ok) return null;
+      return await res.json();
+    } catch {
+      return null;
     }
-  );
+  },
+  [],
+  {
+    revalidate: ONE_MONTH_IN_SECONDS,
+    tags: [`character`],
+  }
+);
 
-export const getLocationById = (id: number) =>
-  unstable_cache(
-    async (): Promise<LocationType | null> => {
-      try {
-        const res = await fetch(`${API}/location/${id}`);
-        if (!res.ok) return null;
-        return await res.json();
-      } catch {
-        return null;
-      }
-    },
-    [`location-${id}`],
-    { tags: [`location-${id}`, "locations"] }
-  );
+export const getLocationById = unstable_cache(
+  async (id: number): Promise<LocationType | null> => {
+    if (!id || id < 1) return null;
+    try {
+      const res = await fetch(`${API}/location/${id}`);
+      if (!res.ok) return null;
+      return await res.json();
+    } catch {
+      return null;
+    }
+  },
+  [],
+  {
+    tags: ["location"],
+    revalidate: ONE_MONTH_IN_SECONDS,
+  }
+);
