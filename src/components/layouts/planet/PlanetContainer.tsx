@@ -1,6 +1,5 @@
 import { getLocationById } from "@/services/rickandmorty";
 import { notFound } from "next/navigation";
-import React from "react";
 import { PlanetsImgData } from "../planets/PlanetsData";
 import PlanetInfoSection from "./PlanetInfoSection";
 import CharacterSection from "./characterSection/CharacterSection";
