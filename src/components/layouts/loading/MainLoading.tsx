@@ -95,7 +95,7 @@ export default function MainLoading() {
         }
       `}</style>
 
-      <div className="fixed h-screen w-screen  flex items-center justify-center bg-gradient-to-br bg-black from-black via-gray-900 to-black z-500">
+      <div className="fixed h-dvh w-dvw  flex items-center justify-center bg-gradient-to-br bg-black from-black via-gray-900 to-black z-500">
         <div className="relative  mx-5  flex items-center justify-center">
           {visited ? (
             <div className="flex flex-col items-center justify-center gap-2">
